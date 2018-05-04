@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   root 'sessions#home'
-  get 'sessions/new' => 'sessions#new'
+  get '/login' => 'sessions#new'
+  get '/signup' => 'users#new'
+  get 'users/show' => 'users#show'
 
 
   resources :ingredients
