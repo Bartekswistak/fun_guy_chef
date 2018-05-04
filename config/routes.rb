@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'sessions#home'
+  get 'sessions/new' => 'sessions#new'
 
 
   resources :ingredients
