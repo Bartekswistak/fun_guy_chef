@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'sessions#home'
+
   resources :ingredients
   resources :recipes
   resources :users
