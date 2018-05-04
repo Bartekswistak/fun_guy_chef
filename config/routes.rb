@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'welcome#home'
+  root 'sessions#home'
 
 
   resources :ingredients
