@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+  end
+  
   def new
     @user = User.new
   end
@@ -13,6 +17,11 @@ class UsersController < ApplicationController
       return redirect_to controller: 'users', action: 'new' unless @user.save
       session[:user_id] = @user.id
       redirect_to controller: 'users', action: 'show'
+    end
+
+    def destroy
+      session.delete :user_id
+      redirect_to '/'
     end
 
     private

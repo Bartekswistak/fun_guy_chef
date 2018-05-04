@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   get '/signup' => 'users#new'
   get 'users/show' => 'users#show'
+  delete "/signout" => "users#destroy"
 
 
   resources :ingredients
