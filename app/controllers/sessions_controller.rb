@@ -8,17 +8,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(username: params[:username])
-
-    user = user.try(:authenticate, params[:password])
-
-    return redirect_to(controller: 'sessions', action: 'new') unless user
-
+    user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
+    redirect_to root_path
+  end
 
-    @user = user
-
-    redirect_to controller: 'users', action: 'show'
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path
   end
 
 end
