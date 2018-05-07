@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
         user = User.new
         user.provider = auth_hash.provider
         user.uid = auth_hash.uid
-        user.username = auth_hash.info.username
+        user.username = auth_hash.username
         user.password = SecureRandom.urlsafe_base64
         user.oauth_token = auth_hash.credentials.token
         user.oauth_expires_at = Time.at(auth_hash.credentials.expires_at)
