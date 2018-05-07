@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_or_create_from_omniauth(request.env["omniauth.auth"])
+    first_name = request.env['omniauth.auth']['info']['first_name']
     session[:user_id] = @user.id
     redirect_to '/users/show'
   end
