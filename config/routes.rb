@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get 'new_ingredient_form', to: 'recipes#new_ingredient_form'
   post 'new_ingredient_form', to: 'recipes#new_ingredient_form'
+
   get '/login' => 'sessions#new'
+  post '/logn' => 'sessions#create'
   get '/signup' => 'users#new'
-  post '/signup' => 'users#new'
+  post '/users' => 'users#create'
   get 'users/show' => 'users#show'
+
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
   resources :users
