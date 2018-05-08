@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get 'auth/:provider/callback', to: 'users#create'
+  get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get 'new_ingredient_form', to: 'recipes#new_ingredient_form'
+  post 'new_ingredient_form', to: 'recipes#new_ingredient_form'
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
         user = User.new
         user.provider = auth_hash.provider
         user.uid = auth_hash.uid
-        user.username = auth_hash.username
+        user.name = auth_hash.name
         user.first_name = auth_hash.first_name
         user.password = SecureRandom.urlsafe_base64
         user.oauth_token = auth_hash.credentials.token
