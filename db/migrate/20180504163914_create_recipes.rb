@@ -4,7 +4,8 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :prep_time
       t.string :cook_time
-      t.text :instructions 
+      t.text :instructions
+      t.string :user_id
 
       t.timestamps
     end

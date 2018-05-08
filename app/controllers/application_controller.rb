@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def current_user_name
-    @current_user[:username]
+  def first_name
+    @first_name = request.env['omniauth.auth']['info']['first_name']
   end
 
   def logged_in?
