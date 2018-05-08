@@ -12,17 +12,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_from_omniauth(request.env["omniauth.auth"])
-    first_name = request.env['omniauth.auth']['info']['first_name']
-    @user.first_name = first_name
+    @user = User.create(user_params)
+    return redirect_to controller: 'users', action: 'new' unless @user.save
     session[:user_id] = @user.id
-    redirect_to '/users/show'
-
-    #  @user = User.create(user_params)
-    #  return redirect_to controller: 'users', action: 'new' unless @user.save
-    #  session[:user_id] = @user.id
-    #  redirect_to controller: 'users', action: 'show'
-    end
+    redirect_to controller: 'users', action: 'show'
+  end
 
     def destroy
       session.delete :user_id
