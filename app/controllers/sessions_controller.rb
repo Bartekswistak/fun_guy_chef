@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   protect_from_forgery with: :null_session
 
-
   def home
   end
 
@@ -38,17 +37,6 @@ class SessionsController < ApplicationController
       end
     end
   end
-
-
-
-
-
-  #  @user = User.find_or_create_from_omniauth(request.env["omniauth.auth"])
-  #  first_name = request.env['omniauth.auth']['info']['first_name']
-  #  @user.first_name = first_name
-  #  session[:user_id] = @user.id
-  #  redirect_to '/users/show'
-  #end
 
   def destroy
     session[:user_id] = nil

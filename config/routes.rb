@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post 'new_ingredient_form', to: 'recipes#new_ingredient_form'
 
   get '/login' => 'sessions#new'
-  post '/logn' => 'sessions#create'
+  post '/login' => 'sessions#create'
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
   get 'users/show' => 'users#show'

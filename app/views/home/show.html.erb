@@ -1,2 +1,6 @@
 <h1>Welcome To The Fun Guy Chef</h1>
 <h2>Creating Delicious Mushroom Recipes</h2>
+
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
