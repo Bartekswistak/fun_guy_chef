@@ -1,11 +1,9 @@
 class SessionsController < ApplicationController
   protect_from_forgery with: :null_session
 
-  def home
-  end
-
   def new
     @user = User.new
+    session[:user_id] = @user.id
   end
 
   def create

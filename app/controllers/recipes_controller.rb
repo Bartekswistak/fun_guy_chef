@@ -1,5 +1,8 @@
 class RecipesController < ApplicationController
 
+  def home
+  end
+
   def new
     @recipe = Recipe.new
   end
