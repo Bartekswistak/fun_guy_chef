@@ -25,4 +25,9 @@ def recipe_params
   params.require(:recipe).permit(:name, :prep_time, :cook_time, :instructions)
 end
 
+def recipe_ingredient_params
+  params.require(:recipe).permit(recipe_ingredients_attributes: [:quantity, :ingredient_id, ingredient: [:name]])
+end
+
+
 end

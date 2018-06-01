@@ -1,1 +1,8 @@
 <h1>Mushroom Recipe List Here</h1>
+
+<% @recipes.collect do |recipe| %>
+  <%= link_to recipe.name %>
+  Prep Time: <%= recipe.prep_time %>
+  Cook Time: <%= recipe.cook_time %>
+  <br>
+<% end %>
