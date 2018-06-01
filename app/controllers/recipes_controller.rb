@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
 
   def home
+    @recipes = Recipe.all
   end
 
   def new
@@ -11,7 +12,5 @@ class RecipesController < ApplicationController
 
   end
 
-  def new_ingredient_form
-  end
 
 end
