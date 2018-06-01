@@ -1,4 +1,4 @@
-class Recipe < ActiveRecord::Base
+class Recipe < ApplicationRecord
   belongs_to :user
   has_many :ingredients
 

@@ -1,4 +1,4 @@
-class Ingredient < ActiveRecord::Base 
+class Ingredient < ApplicationRecord
   belongs_to :recipe
 
 end
