@@ -1,9 +1,14 @@
 class Recipe < ApplicationRecord
   belongs_to :user
-  has_many :ingredients
+  has_many :recipe_ingredients
+  has_many :ingredients, through: :recipe_ingredients
 
   validates :name, uniqueness: true
   validates :name, presence: true
+
+  accepts_nested_attributes_for :ingredients, reject_if: lambda {|attributes| attributes['name'].blank?}
+  accepts_nested_attributes_for :recipe_ingredients, reject_if: lambda {|attributes| attributes['name'].blank?}
+
 
   def delete_ingredients_from_recipe
       ingredients.size.times do
