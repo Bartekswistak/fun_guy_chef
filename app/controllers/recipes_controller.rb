@@ -21,6 +21,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+    @recipe = find_by_id(Recipe) 
   end
 
 private

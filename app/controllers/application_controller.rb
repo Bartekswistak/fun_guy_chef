@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
     return redirect_to(controller: 'users', action: 'new') unless logged_in?
   end
 
+  def find_by_id(class_name)
+    class_name.find_by(id: params[:id])
+  end
+  
 end
