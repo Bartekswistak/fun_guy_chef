@@ -22,6 +22,9 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = find_by_id(Recipe)
+      if @recipe == nil
+        render "users/show"
+      end
   end
 
   def edit
@@ -37,6 +40,12 @@ class RecipesController < ApplicationController
     else
       redirect_to new_recipe_path, alert: recipe.errors.full_messages.each {|m| m}.join
     end
+  end
+
+  def destroy
+    recipe = find_by_id(Recipe)
+    recipe.delete
+    redirect_to root_path
   end
 
 private
