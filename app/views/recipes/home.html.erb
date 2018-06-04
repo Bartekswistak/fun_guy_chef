@@ -1,4 +1,3 @@
-<h1>Mushroom Recipe List Here</h1>
 
 <% @recipes.collect do |recipe| %>
   <%= link_to recipe.name, recipe_path(recipe) %>

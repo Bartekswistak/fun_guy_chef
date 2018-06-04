@@ -1,9 +1,10 @@
 <h1><%= @user.name %>'s Recipes</h1>
 
 <% current_user.recipes.collect do |recipe| %>
-  <%= link_to recipe.name %>
+  <%= link_to recipe.name, recipe_path(recipe) %>
   Prep Time: <%= recipe.prep_time %>
   Cook Time: <%= recipe.cook_time %>
   Added by: <%= recipe.user.name %>
+  <%= link_to 'Edit', edit_recipe_path(recipe) %>
   <br>
 <% end %>

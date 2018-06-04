@@ -21,7 +21,22 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = find_by_id(Recipe) 
+    @recipe = find_by_id(Recipe)
+  end
+
+  def edit
+    @recipe = find_by_id(Recipe)
+    @i = 3.times.collect { @recipe.recipe_ingredients.build }
+  end
+
+  def update
+    recipe = find_by_id(Recipe)
+    if recipe.update(recipe_params)
+      recipe.add_ingredients_to_recipe(recipe_ingredient_params)
+      redirect_to recipe_path(recipe), notice: "Your recipe has successfully been updated"
+    else
+      redirect_to new_recipe_path, alert: recipe.errors.full_messages.each {|m| m}.join
+    end
   end
 
 private
