@@ -25,6 +25,7 @@ class RecipesController < ApplicationController
       if @recipe == nil
         render "users/show"
       end
+    #  binding.pry
   end
 
   def edit
