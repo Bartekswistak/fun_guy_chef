@@ -25,12 +25,11 @@ class RecipesController < ApplicationController
       if @recipe == nil
         render "users/show"
       end
-    #  binding.pry
   end
 
   def edit
     @recipe = find_by_id(Recipe)
-    @i = 3.times.collect { @recipe.recipe_ingredients.build }
+    @i = 6.times.collect { @recipe.recipe_ingredients.build }
   end
 
   def update
@@ -51,13 +50,12 @@ class RecipesController < ApplicationController
 
 private
 
-def recipe_params
-  params.require(:recipe).permit(:name, :prep_time, :cook_time, :instructions)
-end
+  def recipe_params
+    params.require(:recipe).permit(:name, :prep_time, :cook_time, :instructions)
+  end
 
-def recipe_ingredient_params
-  params.require(:recipe).permit(recipe_ingredients_attributes: [:quantity, :ingredient_id, ingredient: [:name]])
-end
-
+  def recipe_ingredient_params
+    params.require(:recipe).permit(recipe_ingredients_attributes: [:quantity, :ingredient_id, ingredient: [:name]])
+  end
 
 end
