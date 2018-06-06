@@ -1,16 +1,13 @@
-<h2>Sign up!</h2>
+<h2>New User Sign up!</h2>
 
 <%= form_for @user do |f| %>
-  <%= f.label :name %>
+  Name:
+  <br>
   <%= f.text_field :name %>
+<br>
+  Password:
   <br>
-  <%= f.label :password %>
   <%= f.password_field :password %>
-  <br>
+<br>
   <%= f.submit "Submit"%>
-  <br>
 <% end %>
-
-<p>
-<%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-</p>

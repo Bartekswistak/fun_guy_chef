@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'auth/google_oauth2/callback' => 'sessions#create'
 
   get '/signup' => 'users#new'
-  post '/users' => 'users#create'
+  post '/signup' => 'users#create'
 
   resources :users
   resources :recipes
