@@ -15,8 +15,10 @@
    <div>
     <%= f.fields_for :recipe_ingredients, @ingredients do |recipe_ingredient| %>
     <div>
+      Select Ingredient: <%= recipe_ingredient.collection_select :ingredient_id, Ingredient.order('name ASC').all, :id, :name, include_blank: 'Select Ingredient' %>
+
     <%= recipe_ingredient.fields_for :ingredient, @recipe.ingredients.build do |ingredient| %>
-      Ingredient: <%= ingredient.text_field :name %>
+      Or Add New Ingredient: <%= ingredient.text_field :name %>
       Amount: <%= recipe_ingredient.text_field :quantity %>
     <% end %>
     </div>
