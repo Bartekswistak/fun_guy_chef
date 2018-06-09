@@ -34,11 +34,12 @@ class RecipesController < ApplicationController
 
   def update
     recipe = find_by_id(Recipe)
-    if recipe.update(recipe_params)
+    if current_user == recipe.user
+      recipe.update(recipe_params)
       recipe.add_ingredients_to_recipe(recipe_ingredient_params)
       redirect_to recipe_path(recipe), notice: "Your recipe has successfully been updated"
     else
-      redirect_to new_recipe_path, alert: recipe.errors.full_messages.each {|m| m}.join
+      redirect_to recipe_path(recipe), alert: "You cannot edit another user's recipe"
     end
   end
 
