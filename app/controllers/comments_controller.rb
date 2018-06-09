@@ -26,16 +26,24 @@ class CommentsController < ApplicationController
 
   def update
     comment = find_by_id(Comment)
-    comment.update(comment_params)
-    redirect_to recipe_path(comment.recipe), notice: "Your comment has been updated"
+    if current_user == comment.user
+      comment.update(comment_params)
+      redirect_to recipe_path(comment.recipe), notice: "Your comment has been updated"
+    else
+      redirect_to recipe_path(comment.recipe), alert: "You can only edit your own comments"
+    end
   end
 
   def destroy
     id = params["id"].to_i
     comment = Comment.find_by(id: id)
-    comment.delete
-    redirect_to recipe_path(comment.recipe)
-    flash[:notice] = "Comment has been deleted"
+    if current_user == comment.user
+      comment.delete
+      redirect_to recipe_path(comment.recipe)
+      flash[:notice] = "Comment has been deleted"
+    else
+      redirect_to recipe_path(comment.recipe), alert: "You can only delete your own comments"
+    end
   end
 
   private

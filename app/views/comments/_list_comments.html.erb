@@ -6,8 +6,8 @@
 <p><%= link_to "Recipe: #{comment.recipe.name}", recipe_path(comment.recipe) %></p>
 <% end %>
 
-<%= link_to "Edit", edit_recipe_comment_path(comment.recipe, comment) if logged_in? && comment.user%>
+<%= link_to "Edit", edit_recipe_comment_path(comment.recipe, comment) if current_user == comment.user%>
 
-<%= link_to "Delete", comment_path(comment), method: :delete, class: 'dcomment' if logged_in? && comment.user%>
+<%= link_to "Delete", comment_path(comment), method: :delete, class: 'dcomment' if current_user == comment.user%>
 </div>
 <% end %>
