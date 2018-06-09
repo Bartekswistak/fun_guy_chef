@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users
   resources :recipes do
     resources :comments, except: [:destroy]
+    post '/comments' => 'comments#create'
   end
 
   resources :comments, only: [:destroy]
