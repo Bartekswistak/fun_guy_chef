@@ -6,7 +6,10 @@ class Recipe < ApplicationRecord
 
   validates :name, uniqueness: true
   validates :name, presence: true
-
+  validates :prep_time, presence: true
+  validates :cook_time, presence: true
+  validates :instructions, presence: true
+  
   accepts_nested_attributes_for :ingredients, reject_if: lambda {|attributes| attributes['name'].blank?}
   accepts_nested_attributes_for :recipe_ingredients, reject_if: lambda {|attributes| attributes['name'].blank?}
 
