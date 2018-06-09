@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
       comment.recipe = find_by_recipe_id
       comment.user = current_user
       comment.save
+      redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
     else
       redirect_to login_path, alert: "You must be logged in to comment"
     end
@@ -33,11 +34,12 @@ class CommentsController < ApplicationController
     id = params["id"].to_i
     comment = Comment.find_by(id: id)
     comment.delete
+    redirect_to recipe_path(comment.recipe)
     flash[:notice] = "Comment has been deleted"
   end
 
   private
-  
+
   def comment_params
      params.require(:comment).permit(:rating, :description)
   end
