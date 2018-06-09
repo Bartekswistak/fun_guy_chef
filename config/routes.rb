@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
 
   resources :users
-  resources :recipes
-  resources :comments
+  resources :recipes do
+    resources :comments, except: [:destroy]
+  end
+
+  resources :comments, only: [:destroy]
 end

@@ -13,3 +13,8 @@
   <p><%= @recipe.instructions %></p>
 
 Added by: <%= @recipe.user.name %>
+<br>
+<h4>
+  Add your comment below! (You must be signed in)
+</h4>
+<%= render 'comments/form', comment: @recipe.comments.new, recipe: @recipe%>
