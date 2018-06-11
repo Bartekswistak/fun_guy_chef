@@ -2,7 +2,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 95%;
+  width: 100%;
   margin-top: 50px;
   position: absolute;
   opacity: 0.85;
@@ -13,12 +13,13 @@
   display: block;
   position: relative;
   background-color: beige;
-  opacity: 0.75;
   margin-left: auto;
   margin-right: auto;
   width: 75%;
-  border-style: double;
+  opacity: 0.75;
   margin-top: 50px;
+  border-style: solid;
+  border-color: rgb(40,45,60);
 }
 
 body {
@@ -28,6 +29,13 @@ body {
 h1 {
   color: darkgreen;
   font-size: 4em;
+}
+
+h2 {
+  color: rgb(161,121,65);
+  font-size: 2em;
+
+
 }
 
 navbar {
