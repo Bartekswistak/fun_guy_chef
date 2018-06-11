@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <div class="page">
-
-
     <title>Fun Guy Chef</title>
-    <img src="/images/Mushroom_Picture.jpg" class= "center">
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
-
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+    <img src="/images/Mushroom_Picture.jpg" class= "center">
   </head>
   <body>
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/errors' %>
-    <h1>Fun Guy Chef</h1>
-    <div class = "container">
-    <%= yield %>
-    </div>
+    <div class="page">
+      <h1>Fun Guy Chef</h1>
+      <div class = "container">
+        <%= yield %>
+      </div>
   </body>
   </div>
 </html>

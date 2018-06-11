@@ -4,7 +4,21 @@
   margin-right: auto;
   width: 95%;
   margin-top: 50px;
+  position: absolute;
+  opacity: 0.85;
+}
+
+.page {
+  text-align: center;
+  display: block;
   position: relative;
+  background-color: beige;
+  opacity: 0.75;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  border-style: double;
+  margin-top: 50px;
 }
 
 body {
@@ -12,7 +26,19 @@ body {
 }
 
 h1 {
+  color: darkgreen;
+  font-size: 4em;
 }
 
 navbar {
+
+
+}
+
+.alert {
+  background-color: red;
+}
+
+.notice {
+  background-color: green;
 }
