@@ -28,12 +28,16 @@ body {
 
 h1 {
   color: rgba(40,45,100,0.75);
-  font-size: 4em;
+  font-size: 6em;
+  font-family: 'Lobster';
+  font-weight: lighter;
+
 }
 
 h2 {
   color: rgb(161,121,65);
   font-size: 2em;
+  font-family: 'Cormorant Unicase', serif;
 
 
 }
