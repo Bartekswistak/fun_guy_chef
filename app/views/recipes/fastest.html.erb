@@ -1,7 +1,7 @@
 <h3>Quickest Recipes</h3>
 
 <% @recipes.collect do |recipe| %>
-  <%= link_to recipe.name, recipe_path(recipe) %> <br>
+  <h4> <%= link_to recipe.name, recipe_path(recipe) %> </h4>
   Cook Time: <%= recipe.cook_time_in_minutes %> <br>
   Added by: <%= recipe.user.name %> <br>
   <br>
