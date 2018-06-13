@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
   end
 
   def highest_rated
-    recipes = Recipe.avg_rating
+    @recipes = Recipe.all
   end
 private
 
