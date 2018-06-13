@@ -2,8 +2,8 @@
 
 <% @recipes.collect do |recipe| %>
   <%= link_to recipe.name, recipe_path(recipe) %> <br>
-  Prep Time: <%= recipe.prep_time_in_minutes %> <br>
-  Cook Time: <%= recipe.cook_time_in_minutes %> <br>
+  Prep Time: <%= recipe.prep_time_in_minutes %> minutes<br>
+  Cook Time: <%= recipe.cook_time_in_minutes %> minutes<br>
   Added by: <%= recipe.user.name %> <br>
   <br>
 <% end %>
