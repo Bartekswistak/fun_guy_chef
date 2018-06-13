@@ -38,13 +38,16 @@ h2 {
   color: rgb(161,121,65);
   font-size: 2em;
   font-family: 'Cormorant Unicase', serif;
-
-
 }
 
-navbar {
+p {
+}
 
-
+navbar a{
+  text-decoration: none;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 20px;
+  color: rgba(40,45,100,1);
 }
 
 .alert {

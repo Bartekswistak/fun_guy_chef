@@ -1,5 +1,6 @@
 <h3>All Recipes</h3>
 
+<p>
 <% @recipes.collect do |recipe| %>
   <%= link_to recipe.name, recipe_path(recipe) %> <br>
   Prep Time: <%= recipe.prep_time_in_minutes %> minutes<br>
@@ -7,3 +8,4 @@
   Added by: <%= recipe.user.name %> <br>
   <br>
 <% end %>
+</p>
