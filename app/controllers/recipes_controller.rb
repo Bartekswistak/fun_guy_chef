@@ -49,6 +49,10 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def sorted_cook_time
+    @recipes = Recipe.fastest
+    render 'recipes/fastest'
+  end
 
 private
 
