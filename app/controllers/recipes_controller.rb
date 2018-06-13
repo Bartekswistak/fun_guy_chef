@@ -49,9 +49,7 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
-  def highest_rated
-    @recipes = Recipe.all
-  end
+
 private
 
   def recipe_params

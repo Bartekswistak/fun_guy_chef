@@ -1,9 +1,0 @@
-<h1>Highest Rated Recipes</h1>
-
-
-<% @recipes.collect do |recipe| %>
-  <%= link_to recipe.name, recipe_path(recipe) %> <br>
-    Average Rating: <%= recipe.avg_rating %> <br>
-    Added by: <%= recipe.user.name %> <br>
-    <br>
-<% end %>
