@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
       redirect_to recipe_path(recipe), notice: "Your recipe has successfully been added"
     else
       @recipe = Recipe.new
-      redirect_to new_recipe_path, alert: recipe.errors.full_messages.each {|m| m}.join
+      redirect_to new_recipe_path, alert: recipe.errors.full_messages.each {|m| m}.join(", ")
     end
   end
 
