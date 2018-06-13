@@ -1,11 +1,12 @@
 <h1><%= @recipe.name %></h1>
-  <h3>Prep:<%= @recipe.prep_time %> ~~ Cook:<%= @recipe.cook_time %> </h3>
+  <h3>Prep Time: <%= @recipe.prep_time %> ~ Cook Time: <%= @recipe.cook_time %> </h3>
 
   <h4>
     Ingredients:
     <ul>
   <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-    <li><%= "#{recipe_ingredient.quantity} #{recipe_ingredient.ingredient.name}" %></li>
+  <li style="list-style-type: none;">
+    <%= "#{recipe_ingredient.quantity} #{recipe_ingredient.ingredient.name}" %></li>
   <% end %>
 </ul>
   </h4>
