@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
-  resources :users
+  get '/users/:user_id/recipes' => 'users#show'
+  
+  resources :users do
+    resources :recipes
+  end
   resources :recipes do
     resources :comments, except: [:destroy]
     post '/comments' => 'comments#create'
