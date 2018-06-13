@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/users/:user_id/recipes' => 'users#show'
   get '/users/:user_id/recipes/new' => 'recipes#new'
 
+  get 'recipes/highest_rated' => 'recipes#highest_rated'
 
   resources :users do
     resources :recipes

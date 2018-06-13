@@ -49,6 +49,9 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def highest_rated
+    recipes = Recipe.avg_rating
+  end
 private
 
   def recipe_params

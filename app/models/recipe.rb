@@ -13,6 +13,10 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :ingredients, reject_if: lambda {|attributes| attributes['name'].blank?}
   accepts_nested_attributes_for :recipe_ingredients, reject_if: lambda {|attributes| attributes['name'].blank?}
 
+  def self.avg_rating(rating)
+    @recipe = find_by_id(Recipe)
+    ratings = @recipe.comments.rating.average(:rating)
+  end
 
   def clear_ingredients_from_recipe
       ingredients.size.times do
