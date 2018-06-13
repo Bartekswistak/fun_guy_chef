@@ -13,3 +13,16 @@ ability to edit the recipe if needed.
 
 Users should be able to browse all recipes, filter recipes, also search
 recipes for specific ingredients used.  
+
+Github: https://github.com/Bartekswistak/fun_guy_chef
+
+Installation:
+
+-Fork and clone Repo from Github.
+-Run Bundle Install
+-Migrate database
+-Start server with 'thin start --ssl'
+
+If you see any issues, would like updates, or have any question please contact me on Github, or submit an issue or pull request.
+
+MIT Licensing.

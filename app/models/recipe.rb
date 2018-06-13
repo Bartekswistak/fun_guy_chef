@@ -9,12 +9,12 @@ class Recipe < ApplicationRecord
   validates :prep_time, presence: true
   validates :cook_time, presence: true
   validates :instructions, presence: true
-  
+
   accepts_nested_attributes_for :ingredients, reject_if: lambda {|attributes| attributes['name'].blank?}
   accepts_nested_attributes_for :recipe_ingredients, reject_if: lambda {|attributes| attributes['name'].blank?}
 
 
-  def delete_ingredients_from_recipe
+  def clear_ingredients_from_recipe
       ingredients.size.times do
       ingredient = RecipeIngredient.find_by(recipe_id: self.id)
       ingredient.delete
@@ -23,7 +23,7 @@ class Recipe < ApplicationRecord
 
   def add_ingredients_to_recipe(params)
 
-    delete_ingredients_from_recipe
+    clear_ingredients_from_recipe
 
     params[:recipe_ingredients_attributes].each do |k, recipe_ingredient|
 
