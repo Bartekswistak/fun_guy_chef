@@ -13,8 +13,12 @@ class CommentsController < ApplicationController
       comment = Comment.new(comment_params)
       comment.recipe = find_by_recipe_id
       comment.user = current_user
-      comment.save
-      redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
+        if comment.description.empty? || comment.rating == nil
+          redirect_to recipe_path(comment.recipe), alert: "Please fill out all fields"
+        else
+          comment.save
+          redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
+      end
     else
       redirect_to login_path, alert: "You must be logged in to comment"
     end
