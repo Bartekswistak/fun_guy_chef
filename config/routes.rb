@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
 
   get '/users/:user_id/recipes' => 'users#show'
-  
+  get '/users/:user_id/recipes/new' => 'recipes#new'
+
+
   resources :users do
     resources :recipes
   end
