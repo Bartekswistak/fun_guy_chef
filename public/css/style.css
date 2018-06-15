@@ -42,6 +42,19 @@ h1 {
   background-color: rgba(40,45,100,0.2);
 }
 
+.edit_recipe {
+  font-family: 'Acme', sans-serif;
+}
+
+.recipe_form {
+  font-family: 'Acme', sans-serif;
+}
+
+.recipe_info {
+  font-family: 'Acme', sans-serif;
+  color: rgb(40,45,100);
+}
+
 h2 {
   color: rgb(161,121,65);
   font-size: 2em;
