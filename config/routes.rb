@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
 
   get '/users/:user_id/recipes' => 'users#show'
-  get '/users/:user_id/recipes/new' => 'recipes#new'
-
+  
   get 'recipes_sorted_by_cook_time' => 'recipes#sorted_cook_time'
 
   resources :users do

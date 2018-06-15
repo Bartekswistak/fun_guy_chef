@@ -38,8 +38,6 @@ class Recipe < ApplicationRecord
       if recipe_ingredient[:quantity].present?
         RecipeIngredient.create(quantity: recipe_ingredient[:quantity], ingredient_id: ingredient.id, recipe_id: self.id )
       end
-
     end
-
   end
 end
