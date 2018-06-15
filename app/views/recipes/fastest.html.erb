@@ -1,4 +1,3 @@
-<h3>Quickest Recipes</h3>
 
 <% @recipes.collect do |recipe| %>
   <h4> <%= link_to recipe.name, recipe_path(recipe) %> </h4>
