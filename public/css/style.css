@@ -52,6 +52,44 @@ h3 a {
   color: rgba(40,45,100,0.75);
 }
 
+.cook_time {
+  font-size: 1.5em;
+  color: rgb(40,45,100);
+
+}
+
+.ingredients {
+  font-size: 1.5em;
+  color: rgb(40,45,100);
+  text-decoration: underline;
+
+
+}
+
+.list {
+  font-size: 1.5em;
+  color: rgb(40,45,100);
+}
+
+.instructions {
+  font-size: 1.5em;
+  color: rgb(40,45,100);
+  text-decoration: underline;
+
+
+}
+
+.recipe_instructions {
+  font-size: 1.7em;
+  color: rgb(40,45,100);
+
+}
+
+.author {
+  font-size: 1.2em;
+  color: rgb(40,45,100);
+}
+
 h4 a {
   color: rgb(161,121,65);
   font-weight: bold;
