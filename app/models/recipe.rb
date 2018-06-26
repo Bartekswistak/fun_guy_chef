@@ -14,6 +14,7 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients, reject_if: lambda {|attributes| attributes['name'].blank?}
 
   scope :fastest, -> { order("cook_time_in_minutes ASC") }
+  scope :most_ingredients, -> { order("recipe.recipe_ingredients.size DESC") }
 
   def clear_ingredients_from_recipe
       ingredients.size.times do

@@ -54,6 +54,11 @@ class RecipesController < ApplicationController
     render 'recipes/fastest'
   end
 
+  def sort_by_ingredients_size
+    @recipes = Recipe.most_ingredients
+    render 'recipes/most_ingredients'
+  end
+
 private
 
   def recipe_params

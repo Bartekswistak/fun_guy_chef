@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_many :ingredients, through: :recipes
   has_many :comments
 
-
   def self.find_or_create_from_omniauth(auth_hash)
     user = self.find_by(uid: auth_hash['info']['uid'], provider: auth_hash['provider'])
       if !user.nil?
