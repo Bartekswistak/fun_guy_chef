@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
       user = User.find_by_name(params[:name])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect_to user_path(user), notice: "You have successfully logged in"
+        redirect_to user_recipes_path(user), notice: "You have successfully logged in"
       else
        if user
           flash[:alert] = "Your password is not correct"
