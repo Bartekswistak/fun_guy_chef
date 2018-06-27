@@ -1,8 +1,1 @@
-<% @recipes.collect do |recipe| %>
-  <h4> <%= link_to recipe.name, recipe_path(recipe) %> </h4>
-  <p class="recipe_info">  Prep Time: <%= recipe.prep_time_in_minutes %> minutes<br>
-  Cook Time: <%= recipe.cook_time_in_minutes %> minutes<br>
-  Added by: <%= recipe.user.name %> <br>
-  <br>
-  </p>
-<% end %>
+<%= render 'recipe_details' %>
