@@ -3,11 +3,12 @@ $(function() {
 
     $.ajax({
       method: "GET",
-      url: '/recipes/1/comments',
+      url: this.href
 
 
-    }).done(function(data){
-      console.log(data)
+    }).done(function(response){
+      debugger
+      $("div.comments").html(response)
     });
 
 
