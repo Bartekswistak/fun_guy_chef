@@ -12,8 +12,11 @@ $(function() {
     const values = $(this).serialize()
 
     $.post(this.action, values).success(function(response) {
-      debugger
-      $("div.comments").html(response)
+//      debugger
+  //    $("div.comments").html(response)
+    //})
+
+    $('div.comments').append(response)
     })
 
     e.preventDefault();
