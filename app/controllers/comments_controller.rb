@@ -17,7 +17,8 @@ class CommentsController < ApplicationController
           redirect_to recipe_path(comment.recipe), alert: "Please fill out all fields"
         else
           comment.save
-          redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
+          #redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
+          render json: comment
       end
     else
       redirect_to login_path, alert: "You must be logged in to comment"
