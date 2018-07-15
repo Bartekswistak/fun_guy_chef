@@ -9,8 +9,10 @@ $(function() {
       //debugger
       //$("div.comments").html(response)
     //});
+    const values = $(this).serialize()
 
-    $.get(this.href).success(function(response) {
+    $.post(this.action, values).success(function(response) {
+      debugger
       $("div.comments").html(response)
     })
 
