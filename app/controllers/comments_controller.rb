@@ -1,5 +1,14 @@
 class CommentsController < ApplicationController
 
+  def index
+    @comments = @post.comments
+
+    respond_to do |format|
+      format.html {render 'index.html', :layout => false}
+      format.js {render 'index.js', :layout => false}
+    end
+  end
+
   def new
     @comment = Comment.new
   end
@@ -9,6 +18,8 @@ class CommentsController < ApplicationController
   end
 
   def create
+    comments = @post.comments
+
     if logged_in?
       comment = Comment.new(comment_params)
       comment.recipe = find_by_recipe_id
@@ -19,8 +30,10 @@ class CommentsController < ApplicationController
           comment.save
           #redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
 
-          render json: comment.to_json(only: [:rating, :description],
-                                    include: [user: { only: [:name]}])
+      #    render json: comment.to_json(only: [:rating, :description],
+      #                              include: [user: { only: [:name]}])
+
+      render 'create.js', :layout => false
       end
     else
       redirect_to login_path, alert: "You must be logged in to comment"
