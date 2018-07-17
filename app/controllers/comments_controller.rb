@@ -18,8 +18,9 @@ class CommentsController < ApplicationController
         else
           comment.save
           #redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
+
           render json: comment.to_json(only: [:rating, :description],
-                                      include: [user: { only: [:name]}])
+                                    include: [user: { only: [:name]}])
       end
     else
       redirect_to login_path, alert: "You must be logged in to comment"
