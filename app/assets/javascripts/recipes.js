@@ -17,7 +17,7 @@ $(function() {
     $('div.comments').append(description)
     })
 
-
+    $('form#new_comment')[0].reset()
 
   })
 })
