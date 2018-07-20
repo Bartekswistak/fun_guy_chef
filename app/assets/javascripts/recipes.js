@@ -10,10 +10,8 @@ $(function() {
       let heading = document.createElement("h3")
       let description = document.createElement("p")
 
-      heading.innerHTML = `${response.user.name} gives ${response.rating} stars on ${response.created_at}`
+      heading.innerHTML = `${response.user.name} gives ${response.rating} out of 5 stars!`
       description.innerHTML = response.description
-
-debugger
 
     $('div.comments').append(heading)
     $('div.comments').append(description)

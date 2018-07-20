@@ -2,7 +2,7 @@
 <div class="comments">
   <% comments.each do |comment| %>
 <h3 class="cheading">
-  <%= comment.user.name %><%= " gives #{comment.rating} stars on #{comment.time}"%>
+  <%= comment.user.name %><%= " gives #{comment.rating} out of 5 stars!"%>
 </h3>
 <p class="cdescription">
   <%= comment.description %>
