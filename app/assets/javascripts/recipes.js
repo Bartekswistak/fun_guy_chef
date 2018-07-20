@@ -6,7 +6,6 @@ $(function() {
 
     $.post(this.action, values).success(function(response) {
 
-
       let heading = document.createElement("h3")
       let description = document.createElement("p")
 
@@ -21,3 +20,22 @@ $(function() {
 
   })
 })
+$(function() {
+  $('.dcomment').click (function(e){
+    e.preventDefault()
+            if(confirm("Are you sure?")){
+                $.post(this.href, {_method:'delete'}, null, "script");
+                  return false;
+            } else {
+              return false;
+            }
+          })
+    })
+    
+// $(function() {
+//   $(".dcomment").on("click", function(e) {
+//     debugger
+//
+//     e.preventDefault();
+//   })
+// })
