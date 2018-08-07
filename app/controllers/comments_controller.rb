@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
           comment.save
           #redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
 
-          render json: comment.to_json(only: [:rating, :description],
+          render json: comment.to_json(only: [:rating, :description, :id, :recipe_id],
                                     include: [user: { only: [:name]}])
 
     #  render 'create.js', :layout => false
