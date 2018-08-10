@@ -6,3 +6,11 @@ $(function() {
             return false;
           })
         })
+
+
+$(function(){
+  $('a.ecomment').on("click", function(e) {
+    e.preventDefault()
+
+  })
+})
