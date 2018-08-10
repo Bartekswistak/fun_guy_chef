@@ -16,15 +16,17 @@ $(function() {
       description.innerHTML = response.description
 
       edit_link.setAttribute('href', `/recipes/${response.recipe_id}/comments/${response.id}/edit`)
+      edit_link.className = "ecomment"
       edit_link.innerHTML = "Edit"
 
       delete_link.setAttribute('href', `/comments/${response.id}`)
+      delete_link.className = "dcomment"
       delete_link.innerHTML = "Delete"
 
     $('div.comments').append(heading)
     $('div.comments').append(description)
     $('div.comments').append(edit_link, " ", delete_link)
-debugger
+
     })
 
     $('form#new_comment')[0].reset()

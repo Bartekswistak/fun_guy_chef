@@ -3,14 +3,14 @@ $(function() {
     e.preventDefault()
         $.post(this.href, {_method:'delete'});
 
-            return false;
-          })
-        })
+          return false;
+      })
+  })
 
 
 $(function(){
   $('a.ecomment').on("click", function(e) {
     e.preventDefault()
-
+    alert("you hit edit")
   })
 })
