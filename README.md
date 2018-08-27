@@ -1,3 +1,5 @@
+# Fun Guy Chef
+
 Fun Guy Chef is a Rails Application where users can create, manage and browse recipes with a main staple ingredient of Mushrooms!
 
 Users will be asked to sign up or log in, if they have created an account
@@ -13,7 +15,7 @@ ability to edit the recipe if needed.
 
 Github: https://github.com/Bartekswistak/fun_guy_chef
 
-Installation:
+### Installation:
 
 -Fork and clone Repo from Github.
 -Run Bundle Install
