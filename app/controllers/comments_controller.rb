@@ -1,5 +1,12 @@
 class CommentsController < ApplicationController
 
+  def index
+    respond_to do |format|
+      format.html {render 'index.html', :layout => false}
+      format.js {render 'index.js', :layout => false}
+    end
+  end
+
   def new
     @comment = Comment.new
   end
@@ -17,7 +24,12 @@ class CommentsController < ApplicationController
           redirect_to recipe_path(comment.recipe), alert: "Please fill out all fields"
         else
           comment.save
-          redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
+          #redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
+
+          render json: comment.to_json(only: [:rating, :description, :id, :recipe_id],
+                                    include: [user: { only: [:name]}])
+
+    #  render 'create.js', :layout => false
       end
     else
       redirect_to login_path, alert: "You must be logged in to comment"
@@ -55,5 +67,4 @@ class CommentsController < ApplicationController
   def comment_params
      params.require(:comment).permit(:rating, :description)
   end
-
 end

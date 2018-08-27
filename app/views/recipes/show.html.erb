@@ -17,6 +17,10 @@
     <h3 class="author">Added by: <%= @recipe.user.name %></h3>
 <br>
 
+<div class="comments">
+  <h2>Comments:</h2>
+</div>
+
 <%= render 'comments/list_comments', comments: @recipe.comments if @recipe.comments %>
 
 <h4>

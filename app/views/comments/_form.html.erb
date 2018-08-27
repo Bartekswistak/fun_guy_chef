@@ -2,5 +2,5 @@
   <%= render 'layouts/form_errors', form: comment %>
   <div>Rating: (1-5)</div> <div><%= f.text_field :rating %></div>
   <div>Description</div> <div><%= f.text_area :description, size: "50x5" %></div>
-  <%= f.submit %>
+  <%= f.button :submit, id: 'button' %>
 <% end %>

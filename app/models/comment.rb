@@ -8,7 +8,4 @@ class Comment < ApplicationRecord
     user.name
   end
 
-  def time
-    created_at.strftime("%l:%M %P %B %e, %Y")
-  end
 end
