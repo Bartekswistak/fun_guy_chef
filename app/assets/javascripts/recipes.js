@@ -27,6 +27,8 @@ $(function() {
     $('div.comments').append(description)
     $('div.comments').append(edit_link, " ", delete_link)
 
+    $('div.comments').wrapAll('<div class= "new_comment_container" />')
+
     })
 
     $('form#new_comment')[0].reset()
