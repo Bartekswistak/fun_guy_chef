@@ -1,11 +1,10 @@
 $(function() {
   $('a.dcomment').on("click", function(e){
     e.preventDefault()
-    $('div.comments').remove();
+    alert("Are you sure?");
+    $('div').remove('new_comment_container');
          
-    $.post(this.href, {_method:'delete'});
-  
-        return false
+
       })
   })
 
