@@ -20,6 +20,7 @@ $(function() {
       edit_link.innerHTML = "Edit"
 
       delete_link.setAttribute('href', `/comments/${response.id}`)
+      delete_link.setAttribute('data-method', 'delete')
       delete_link.className = "dcomment"
       delete_link.innerHTML = "Delete"
 
@@ -27,11 +28,29 @@ $(function() {
     $('div.comments').append(description)
     $('div.comments').append(edit_link, " ", delete_link)
 
-    $('div.comments').wrapAll('<div class= "new_comment_container" />')
+    $('div.comments').wrap('<div class= "new_comment_container"/>').attr('id', `${response.id}`)
 
     })
 
     $('form#new_comment')[0].reset()
 
+  })
+})
+
+$(function() {
+  $('a.dcomment').on("click", function(e){
+    e.preventDefault();
+
+    alert("Delete this comment?");
+    $(this).parent().remove();
+
+  })    
+})
+
+
+$(function(){
+  $('a.ecomment').on("click", function(e) {
+    e.preventDefault();
+    alert("you hit edit")
   })
 })
