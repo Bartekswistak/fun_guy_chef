@@ -14,6 +14,7 @@ of mushroom. The recipe will have a list of ingredients, amounts, and cooking in
 Users will be able to post these recipes to the site, and then have the
 ability to edit the recipe if needed.
 
+## Documentation
 
 Github: https://github.com/Bartekswistak/fun_guy_chef
 
@@ -27,10 +28,12 @@ bundle Install
 rake db:migrate
 ```
 
--Start server with:
+Start server with:
 ```
  rails server
  ```
+
+ ### Built with Ruby on Rails
 
 If you see any issues, would like updates, or have any question please contact me on Github, or submit an issue or pull request.
 
