@@ -2,6 +2,8 @@
 
 Fun Guy Chef is a Rails Application where users can create, manage and browse recipes with a main staple ingredient of Mushrooms!
 
+## Features
+
 Users will be asked to sign up or log in, if they have created an account
 already. Username and password will be required, as well as an option to
 log in through Google using Omniauth.
@@ -17,10 +19,18 @@ Github: https://github.com/Bartekswistak/fun_guy_chef
 
 ### Installation:
 
--Fork and clone Repo from Github.
--Run Bundle Install
--Migrate database
--Start server with 'thin start --ssl'
+Fork and clone Repo from Github.
+```
+bundle Install
+```
+```
+rake db:migrate
+```
+
+-Start server with:
+```
+ rails server
+ ```
 
 If you see any issues, would like updates, or have any question please contact me on Github, or submit an issue or pull request.
 
