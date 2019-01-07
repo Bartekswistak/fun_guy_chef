@@ -55,7 +55,7 @@ class CommentsController < ApplicationController
     comment = Comment.find_by(id: id)
     if current_user == comment.user
       comment.delete
-      redirect_to recipe_path(comment.recipe)
+     # redirect_to recipe_path(comment.recipe)
       flash[:notice] = "Comment has been deleted"
     else
       redirect_to recipe_path(comment.recipe), alert: "You can only delete your own comments"
