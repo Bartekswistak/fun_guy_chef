@@ -24,12 +24,9 @@ class CommentsController < ApplicationController
           redirect_to recipe_path(comment.recipe), alert: "Please fill out all fields"
         else
           comment.save
-          #redirect_to recipe_path(comment.recipe), notice: "Your comment has been added"
-
           render json: comment.to_json(only: [:rating, :description, :id, :recipe_id],
                                     include: [user: { only: [:name]}])
 
-    #  render 'create.js', :layout => false
       end
     else
       redirect_to login_path, alert: "You must be logged in to comment"
