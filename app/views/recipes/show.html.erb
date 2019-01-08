@@ -17,7 +17,9 @@
     <h3 class="author">Added by: <%= @recipe.user.name %></h3>
 <br>
 
-<h2>Comments:</h2>
+<h2>
+    <%= link_to "View Comments","#", id: 'comments_link' %>
+</h2>
 
 <div class="comments">
 </div>

@@ -54,4 +54,11 @@ $(function() {
       alert("you hit edit")
     })
   })
+
+  $(function(){
+    $('#comments_link').on("click", function(e){
+      e.preventDefault();
+      $('.comments_container').toggle();
+    })
+  })
   
