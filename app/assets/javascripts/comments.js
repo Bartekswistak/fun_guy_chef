@@ -58,7 +58,8 @@ $(function() {
   $(function(){
     $('#comments_link').on("click", function(e){
       e.preventDefault();
-      $('.comments_container').toggle();
+      $('.comments_container').fadeToggle();
     })
   })
   
+
