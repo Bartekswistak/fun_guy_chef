@@ -5,20 +5,20 @@ $(function(){
 })
 
 $(document).ready(function() {
-	var max_fields      = 10; //maximum input boxes allowed
+	var max_fields      = 10;
 	var wrapper   		= $(".ingredient_form"); 
-	var add_button      = $(".add_field_button"); //Add button ID
+	var add_button      = $(".add_field_button"); 
 	
-	var x = 1; //initial text box count
-	$(add_button).click(function(e){ //on add input button click
+	var x = 1; 
+	$(add_button).click(function(e){ 
 		e.preventDefault();
-		if(x < max_fields){ //max input box allowed
-			x++; //text box increment
-      $(wrapper).append('<div>Select Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][][ingredient_id]"/>Or Add New Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][][ingredient][name]"/>Amount:<input type="text" name="recipe[recipe_ingredients_attributes][][quantity]"/><a href="#" class="remove_field">Remove</a></div>');
+		if(x < max_fields){ 
+			x++; 
+      $(wrapper).append('<div class="recipe_form">Select Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][]ingredient_id]"/>Or Add New Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][][ingredient][name]"/>Amount:<input type="text" name="recipe[recipe_ingredients_attributes][][quantity]"/><a href="#" class="remove_field">Remove</a></div>');
 		}
 	});
 	
-	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+	$(wrapper).on("click",".remove_field", function(e){ 
 		e.preventDefault(); $(this).parent('div').remove(); x--;
 	})
 });
