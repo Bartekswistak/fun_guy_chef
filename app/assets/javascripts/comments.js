@@ -30,6 +30,12 @@ $(function() {
   
       // $('div.comments').append('<div class= "new_comment_container"/>').attr('id', `${response.id}`)
   
+      $('div.comments').append('<h3>' + ` ${response.user.name}` + ' gives' + ` ${response.rating}` + ' out of 5 stars! </h3>')
+      $('div.comments').append('<p>' + `${response.description}` + '</p>')
+      $('div.comments').append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
+      $('div.comments').append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
+
+
       })
   
       $('form#new_comment')[0].reset()
