@@ -14,7 +14,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		if(x < max_fields){ 
 			x++; 
-      $(wrapper).append('<div class="recipe_form">Select Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][]ingredient_id]"/>Or Add New Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][][ingredient][name]"/>Amount:<input type="text" name="recipe[recipe_ingredients_attributes][][quantity]"/><a href="#" class="remove_field">Remove</a></div>');
+      $(wrapper).append('<div class="recipe_form">Select Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + ']ingredient_id]"/>Or Add New Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][ingredient][name]"/>Amount:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][quantity]"/><a href="#" class="remove_field">Remove</a></div>');
 		}
 	});
 	
