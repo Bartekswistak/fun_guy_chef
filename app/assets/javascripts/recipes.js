@@ -4,7 +4,7 @@ $(function(){
     })
 })
 
-$(document).ready(function() {
+$(function() {
 	var max_fields      = 10;
 	var wrapper   		= $(".ingredient_form"); 
 	var add_button      = $(".add_field_button"); 
