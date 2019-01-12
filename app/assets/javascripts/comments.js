@@ -1,28 +1,24 @@
-$(function() {
-    $("#new_comment").on("submit", function(e) {
-      e.preventDefault();
+$(function createComment() {
+  $("#new_comment").on("submit", function(e) {
+    e.preventDefault();
   
-      const values = $(this).serialize()
+    const values = $(this).serialize()
   
-      $.post(this.action, values).success(function(response) {
-  
-      //let new_comment_wrapper = ('<div class= "new_comment_container"/>').attr('id', `${response.id}`)
-  
+    $.post(this.action, values).success(function(response) {
+    
       $('div.comments_container').append('<h3 class="cheading">' + ` ${response.user.name}` + ' gives' + ` ${response.rating}` + ' out of 5 stars! </h3>')
       $('div.comments_container').append('<p class="cdescription">' + `${response.description}` + '</p>')
       $('div.comments_container').append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
       $('div.comments_container').append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
+      
+    });
 
-     // $('div.comments_container').wrapInner('<div class= "new_comment_container"/>').attr('id', `${response.id}`)
-    
-      })
+$('form#new_comment')[0].reset();
   
-      $('form#new_comment')[0].reset()
+  });
+});
   
-    })
-  })
-  
-  $(function() {
+  $(function deleteComment() {
     $('a.dcomment').on("click", function(e){
       e.preventDefault();
 
@@ -31,27 +27,24 @@ $(function() {
           $(this).hide("slow") + $(this).siblings().hide("slow");
           }
           else {
-            return false
-          
-        }
-    
-
-  })    
-})
+            return false;
+          }
+      });
+  });
   
   
-  $(function(){
+  $(function editComment(){
     $('a.ecomment').on("click", function(e) {
       e.preventDefault();
-      alert("you hit edit")
-    })
-  })
+      alert("you hit edit");
+    });
+  });
 
-  $(function(){
+  $(function showComments(){
     $('#comments_link').on("click", function(e){
       e.preventDefault();
       $('.comments_container').fadeToggle();
-    })
-  })
+    });
+  });
   
 
