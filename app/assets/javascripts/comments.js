@@ -48,3 +48,11 @@ $('form#new_comment')[0].reset();
   });
   
 
+  $(function () {
+    $("#comments_link").click(function () {
+        $("#comments_link").fadeOut(function () {
+            $("#comments_link").text(($("#comments_link").text() == 'View Comments') ? 'Hide Comments' : 'View Comments').fadeIn();
+        })
+    })
+});
+
