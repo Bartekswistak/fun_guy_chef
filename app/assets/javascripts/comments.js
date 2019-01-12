@@ -13,7 +13,7 @@ $(function() {
       $('div.comments_container').append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
       $('div.comments_container').append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
 
-      $('div.comments_container').wrapInner('<div class= "new_comment_container"/>').attr('id', `${response.id}`)
+     // $('div.comments_container').wrapInner('<div class= "new_comment_container"/>').attr('id', `${response.id}`)
     
       })
   
@@ -26,8 +26,15 @@ $(function() {
     $('a.dcomment').on("click", function(e){
       e.preventDefault();
 
-      alert("Delete this comment?");
-    $(this).parent().remove();
+      var r = confirm("Delete this comment?");
+        if (r == true) {
+          $(this).hide("slow") + $(this).siblings().hide("slow");
+          }
+          else {
+            return false
+          
+        }
+    
 
   })    
 })
