@@ -21,9 +21,6 @@
     <%= link_to "View Comments","#", id: 'comments_link' %>
 </h2>
 
-<div class="comments">
-</div>
-
 <%= render 'comments/list_comments', comments: @recipe.comments if @recipe.comments %>
 
 <h4>
