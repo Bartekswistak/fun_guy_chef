@@ -1,5 +1,7 @@
 <div class="comments_container">
+
 <% comments.each do |comment| %>
+  <div class='new_comment_<%=comment.id%>'>
 <h3 class="cheading">
   <%= comment.user.name %><%= " gives #{comment.rating} out of 5 stars!"%>
 </h3>
@@ -11,4 +13,5 @@
 
 <%= link_to "Delete", comment_path(comment), method: :delete, class: 'dcomment' if current_user == comment.user%>
 <% end %>
+</div>
 </div>
