@@ -21,7 +21,7 @@ $('form#new_comment')[0].reset();
 });
   
   $(function deleteComment() {
-    $('a.dcomment').on("click", function(e){
+    $('body').on("click",'a.dcomment', function(e){
       e.preventDefault();
 
       var r = confirm("Delete this comment?");
