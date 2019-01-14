@@ -36,21 +36,27 @@ $('form#new_comment')[0].reset();
   
   
   $(function editComment(){
-    $('a.ecomment').on("click", function(e) {
+    $('body').on("click",'a.ecomment', function(e){
       e.preventDefault();
-      alert("you hit edit");
+      
     });
   });
 
   $(function showComments(){
     $('#comments_link').on("click", function(e){
       e.preventDefault();
-      $('.comments_container').fadeToggle();
+      $('.comments_container').fadeToggle()
     });
   });
   
 
-  $(function () {
+  function Comment(comment) {
+    this.id = comment.id;
+    this.rating = comment.rating;
+    this.description = comment.description;
+  }
+
+$(function() {
     $("#comments_link").click(function () {
         $("#comments_link").fadeOut(function () {
             $("#comments_link").text(($("#comments_link").text() == 'View Comments') ? 'Hide Comments' : 'View Comments').fadeIn();
