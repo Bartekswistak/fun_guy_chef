@@ -35,12 +35,24 @@ $('form#new_comment')[0].reset();
   });
   
   
-  $(function editComment(){
-    $('body').on("click",'a.ecomment', function(e){
-      e.preventDefault();
+  // $(function editComment(){
+  //   $('body').on("click",'a.ecomment', function(e){
+  //     e.preventDefault();
       
+  //     $(this).parent().replaceWith( '<h3>Editing your comment...</h3>', $(".comment_form"))
+  //   });
+  // });
+
+  var updateComments = (data) => {
+    $.ajax({
+      url: data.action,
+      type: "PATCH",
+      data: $(data).serialize(),
+      success: function(response) {
+        //update DOM/do something
+      }
     });
-  });
+  };
 
   $(function showComments(){
     $('#comments_link').on("click", function(e){
@@ -48,13 +60,6 @@ $('form#new_comment')[0].reset();
       $('.comments_container').fadeToggle()
     });
   });
-  
-
-  function Comment(comment) {
-    this.id = comment.id;
-    this.rating = comment.rating;
-    this.description = comment.description;
-  }
 
 $(function() {
     $("#comments_link").click(function () {
