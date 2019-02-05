@@ -35,13 +35,13 @@ $('form#new_comment')[0].reset();
   });
   
   
-  // $(function editComment(){
-  //   $('body').on("click",'a.ecomment', function(e){
-  //     e.preventDefault();
+  $(function editComment(){
+    $('body').on("click",'a.ecomment', function(e){
+      e.preventDefault();
       
-  //     $(this).parent().replaceWith( '<h3>Editing your comment...</h3>', $(".comment_form"))
-  //   });
-  // });
+      $(this).parent().replaceWith( '<h3>Editing your comment...</h3>', $(".comment_form"))
+    });
+  });
 
   var updateComments = (data) => {
     $.ajax({
