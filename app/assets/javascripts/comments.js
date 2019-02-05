@@ -41,8 +41,20 @@ $('form#new_comment')[0].reset();
 
       $(this).parent().hide();
        $(".editing").show();
+
     });
   });
+
+  $(function cancelEdit() {
+    $('body').on("click",'button.cancel', function(e){
+      e.preventDefault();
+        
+        $("form.editing").hide();
+
+        $("form.editing").prev().show(); // need to abstract the id...so it works on all comments
+        
+    })
+  })
   
 
   var updateComments = (data) => {
