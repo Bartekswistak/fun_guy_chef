@@ -17,6 +17,7 @@ $(function createComment() {
 
 $('form#new_comment')[0].reset();
   
+    Comment.prototype.commentConfirm();
   });
 });
   
@@ -83,3 +84,12 @@ $(function() {
     })
 });
 
+function Comment(comment) {
+  this.description = comment.description;
+  this.rating = comment.rating;
+  this.user = comment.user;
+}
+
+Comment.prototype.commentConfirm = function() {
+  alert('You are about to give a rating of: ' +  this.rating + 'stars');
+}
