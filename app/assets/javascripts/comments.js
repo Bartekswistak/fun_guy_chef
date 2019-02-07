@@ -6,7 +6,7 @@ $(function createComment() {
   
     $.post(this.action, values).success(function(response) {
       const newComment = new Comment(response);
-      //debugger
+      // debugger
       $('div.comments_container').append('<div class="new_comment_' + `${response.id}` + '"> </div>')
 
       $('div.new_comment_'+ `${response.id}`).append('<h3 class="cheading">' + newComment.user.name + ' gives ' + newComment.rating + ' out of 5 stars! </h3>')
@@ -14,7 +14,11 @@ $(function createComment() {
       $('div.new_comment_'+ `${response.id}`).append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
       $('div.new_comment_'+ `${response.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
       
-      Comment.prototype.commentConfirm(newComment);
+      Comment.prototype.commentConfirm = function() {
+        alert('You are about to give a rating of: ' +  newComment.rating + ' stars');
+      }
+
+      newComment.commentConfirm();
     });
 
 $('form#new_comment')[0].reset();
@@ -93,6 +97,4 @@ function Comment(comment) {
   this.user = comment.user;
 }
 
-Comment.prototype.commentConfirm = function() {
-  alert('You are about to give a rating of: ' +  this.rating + 'stars');
-}
+
