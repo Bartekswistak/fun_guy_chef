@@ -5,19 +5,22 @@ $(function createComment() {
     const values = $(this).serialize()
   
     $.post(this.action, values).success(function(response) {
-    
+      const newComment = new Comment(response);
+      //debugger
       $('div.comments_container').append('<div class="new_comment_' + `${response.id}` + '"> </div>')
 
-      $('div.new_comment_'+ `${response.id}`).append('<h3 class="cheading">' + ` ${response.user.name}` + ' gives' + ` ${response.rating}` + ' out of 5 stars! </h3>')
-      $('div.new_comment_'+ `${response.id}`).append('<p class="cdescription">' + `${response.description}` + '</p>')
+      $('div.new_comment_'+ `${response.id}`).append('<h3 class="cheading">' + newComment.user.name + ' gives ' + newComment.rating + ' out of 5 stars! </h3>')
+      $('div.new_comment_'+ `${response.id}`).append('<p class="cdescription">' + newComment.description + '</p>')
       $('div.new_comment_'+ `${response.id}`).append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
       $('div.new_comment_'+ `${response.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
-     
+      
+      Comment.prototype.commentConfirm(newComment);
     });
 
 $('form#new_comment')[0].reset();
   
-    Comment.prototype.commentConfirm();
+
+
   });
 });
   
@@ -35,7 +38,7 @@ $('form#new_comment')[0].reset();
       });
   });
   
-  
+ 
   $(function editComment(){
     $('body').on("click",'a.ecomment', function(e){
       e.preventDefault();
@@ -52,7 +55,7 @@ $('form#new_comment')[0].reset();
         
         $("form.editing").hide();
 
-        $("form.editing").prev().show(); // need to abstract the id...so it works on all comments
+        $("form.editing").prev().show();
         
     })
   })
