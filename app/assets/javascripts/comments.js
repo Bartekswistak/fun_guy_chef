@@ -14,16 +14,21 @@ $(function createComment() {
       $('div.new_comment_'+ `${response.id}`).append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
       $('div.new_comment_'+ `${response.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
       
-      Comment.prototype.commentConfirm = function() {
-        alert('You are about to give a rating of: ' +  newComment.rating + ' stars');
-      }
-
+ 
       newComment.commentConfirm();
     });
 
 $('form#new_comment')[0].reset();
   
+Comment.prototype.commentConfirm = function() {
+  alert('You are about to give a rating of: ' +  this.rating + ' stars');
+}
 
+function Comment(comment) {
+  this.description = comment.description;
+  this.rating = comment.rating;
+  this.user = comment.user;
+}
 
   });
 });
@@ -91,10 +96,6 @@ $(function() {
     })
 });
 
-function Comment(comment) {
-  this.description = comment.description;
-  this.rating = comment.rating;
-  this.user = comment.user;
-}
+
 
 
