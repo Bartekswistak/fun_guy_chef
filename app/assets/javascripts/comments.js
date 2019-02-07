@@ -6,7 +6,7 @@ $(function createComment() {
   
     $.post(this.action, values).success(function(response) {
       const newComment = new Comment(response);
-      // debugger
+      
       $('div.comments_container').append('<div class="new_comment_' + `${response.id}` + '"> </div>')
 
       $('div.new_comment_'+ `${response.id}`).append('<h3 class="cheading">' + newComment.user.name + ' gives ' + newComment.rating + ' out of 5 stars! </h3>')
