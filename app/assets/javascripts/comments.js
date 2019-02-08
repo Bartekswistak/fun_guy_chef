@@ -6,6 +6,8 @@ $(function createComment() {
   
     $.post(this.action, values).success(function(response) {
       const newComment = new Comment(response);
+
+      if (newComment.commentConfirm());
       
       $('div.comments_container').append('<div class="new_comment_' + `${response.id}` + '"> </div>')
 
@@ -14,14 +16,21 @@ $(function createComment() {
       $('div.new_comment_'+ `${response.id}`).append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
       $('div.new_comment_'+ `${response.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
       
- 
-      newComment.commentConfirm();
     });
 
 $('form#new_comment')[0].reset();
   
+  });
+});
+
 Comment.prototype.commentConfirm = function() {
-  alert('You are about to give a rating of: ' +  this.rating + ' stars');
+  var c = confirm('You are about to comment: "' + this.description + '" and give a rating of: ' +  this.rating + ' stars');
+    if (c == true){
+      return true;
+    } 
+    else {
+      return false;
+    }
 }
 
 function Comment(comment) {
@@ -30,8 +39,6 @@ function Comment(comment) {
   this.user = comment.user;
 }
 
-  });
-});
   
   $(function deleteComment() {
     $('body').on("click",'a.dcomment', function(e){
