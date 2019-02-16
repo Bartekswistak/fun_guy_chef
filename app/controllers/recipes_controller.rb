@@ -29,7 +29,7 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = find_by_id(Recipe)
-    @i = 6.times.collect { @recipe.recipe_ingredients.build }
+    @i = 1.times.collect { @recipe.recipe_ingredients.build }
   end
 
   def update
