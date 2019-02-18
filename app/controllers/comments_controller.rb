@@ -10,19 +10,19 @@ class CommentsController < ApplicationController
 
   def create
     if logged_in?
-      comment = Comment.new(comment_params)
-      comment.recipe = find_by_recipe_id
-      comment.user = current_user
-        if comment.description.empty? || comment.rating == nil
-          redirect_to recipe_path(comment.recipe), alert: "Please fill out all fields"
-        else
-          comment.save
-          render json: comment.to_json(only: [:rating, :description, :id, :recipe_id],
-                                    include: [user: { only: [:name]}])
+      @comment = Comment.new(comment_params)
+      @comment.recipe = find_by_recipe_id
+      @comment.user = current_user
 
+      respond_to do |format|
+        if @comment.save
+          format.html { redirect_to recipe_path(@comment.recipe), notice: 'Comment was successfully created.' }
+          format.json { render json: @comment, status: 201}
+        elsif @comment.description.empty? || @comment.rating == nil
+          format.html { redirect_to recipe_path(@comment.recipe), alert: "You can't leave the comment box blank. Please try again!" }
+          format.json { render json: @comment.errors, status:400 }
+        end
       end
-    else
-      redirect_to login_path, alert: "You must be logged in to comment"
     end
   end
 
