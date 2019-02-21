@@ -1,7 +1,19 @@
+// CommentConfirm triggered first but no post going through //
+
+
 $(function createComment() {
   $("#new_comment").on("submit", function(e) {
     e.preventDefault();
-    
+      var $form = $(this);
+      var action = $form.attr("action");
+      var params = $form.serialize();
+    $.ajax({
+      url: action,
+      data: params,
+      dataType: "json",
+      method: "POST"
+    })
+     
     const values = {
       description: $('#comment_description').val(),
       rating: $('#comment_rating').val()
@@ -22,12 +34,13 @@ Comment.prototype.commentConfirm = function(e) {
       'comment[rating]': this.rating
     };  
     
-  $.post(this.action, params).success(function(response) {
     debugger
+  $.post(this.action, params).success(function(response) {
+    
     $('div.comments_container').append('<div class="new_comment_' + `${response.id}` + '"> </div>')
 
-      $('div.new_comment_'+ `${response.id}`).append('<h3 class="cheading">' + newComment.user.name + ' gives ' + newComment.rating + ' out of 5 stars! </h3>')
-      $('div.new_comment_'+ `${response.id}`).append('<p class="cdescription">' + newComment.description + '</p>')
+      $('div.new_comment_'+ `${response.id}`).append('<h3 class="cheading">' + response.user.name + ' gives ' + response.rating + ' out of 5 stars! </h3>')
+      $('div.new_comment_'+ `${response.id}`).append('<p class="cdescription">' + response.description + '</p>')
       $('div.new_comment_'+ `${response.id}`).append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
       $('div.new_comment_'+ `${response.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
       
@@ -41,6 +54,9 @@ function Comment(comment) {
   this.rating = comment.rating;
   this.user = comment.user;
 }
+
+
+//Form posted correctly first but commentConfirm not triggered//
 
 // $(function createComment() {
 //   $("#new_comment").on("submit", function(e) {
@@ -66,15 +82,15 @@ function Comment(comment) {
 // });
 
 // Comment.prototype.commentConfirm = function() {
+  
 //   let doIt = confirm(`You are about to comment: "${this.description}" and give a rating of: ${this.rating} stars`);
 //     if(doIt == true) {
-//       createComment();
+//       return true;
 //     } 
 //     else {
 //       return false;
 //     }
 //   };
-
 
 // function Comment(comment) {
 //   this.description = comment.description;
