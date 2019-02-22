@@ -34,7 +34,6 @@ Comment.prototype.commentConfirm = function(e) {
       'comment[rating]': this.rating
     };  
     
-    debugger
   $.post(this.action, params).success(function(response) {
     
     $('div.comments_container').append('<div class="new_comment_' + `${response.id}` + '"> </div>')

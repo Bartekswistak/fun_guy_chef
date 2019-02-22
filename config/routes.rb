@@ -15,11 +15,13 @@ Rails.application.routes.draw do
 
   get 'recipes_sorted_by_cook_time' => 'recipes#sorted_cook_time'
 
+  post '/recipes/:recipe_id' => 'comments#create'
+
   resources :users do
     resources :recipes
   end
   resources :recipes do
-    resources :comments, except: [:destroy]
+    resources :comments
     post '/comments' => 'comments#create'
   end
 
