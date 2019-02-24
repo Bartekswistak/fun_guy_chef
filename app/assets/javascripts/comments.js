@@ -1,18 +1,6 @@
-// CommentConfirm triggered first but no post going through //
-
-
 $(function createComment() {
   $("#new_comment").on("submit", function(e) {
     e.preventDefault();
-      var $form = $(this);
-      var action = $form.attr("action");
-      var params = $form.serialize();
-    $.ajax({
-      url: action,
-      data: params,
-      dataType: "json",
-      method: "POST"
-    })
      
     const values = {
       description: $('#comment_description').val(),

@@ -18,12 +18,12 @@ Rails.application.routes.draw do
   post '/recipes/:recipe_id' => 'comments#create'
 
   resources :users do
-    resources :recipes
+    resources :recipes, except: [:destroy]
   end
   resources :recipes do
     resources :comments
     post '/comments' => 'comments#create'
   end
 
-  resources :comments, only: [:destroy]
+  resources :comments, only: [:create, :destroy]
 end
