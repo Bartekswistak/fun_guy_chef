@@ -89,7 +89,7 @@ function Comment(comment) {
   $(function deleteComment() {
     $('body').on("click",'a.dcomment', function(e){
       e.preventDefault();
-
+      
       var r = confirm("Delete this comment?");
         if (r == true) {
           $(this).parent().hide("slow");
@@ -105,19 +105,34 @@ function Comment(comment) {
     $('body').on("click",'a.ecomment', function(e){
       e.preventDefault();
 
-      $(this).parent().hide();
-       $(".editing").show();
-
+     $.ajax( {
+      type: "GET",
+      url: "/recipes/" + `:recipe_id` + "/comments/" + `:comment_id` + "",
+      data: "",
+      success: function(response) {
+        $(this).parent().replaceWith(response);
+      }
     });
+    return false;
   });
+});
+
+     
+      // $(this).parent().hide();
+      //  $(".editing").show();
+
+  //   });
+  // });
 
   $(function cancelEdit() {
     $('body').on("click",'button.cancel', function(e){
       e.preventDefault();
         
-        $("form.editing").hide();
-
-        $("form.editing").prev().show();
+       
+      
+        
+      // $("form.editing").hide();
+      // $("form.editing").prev().show();
         
     })
   })

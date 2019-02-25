@@ -4,6 +4,12 @@ $(function(){
     })
 })
 
+$(function(){
+	$('h3.users_recipes').hover(function(){
+		$(this).next('p.recipe_info').slideDown(2000);
+	})
+})
+
 $(function() {
 	var max_fields      = 10;
 	var wrapper   		= $(".ingredient_form"); 

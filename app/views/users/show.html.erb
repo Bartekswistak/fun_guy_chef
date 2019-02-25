@@ -2,6 +2,10 @@
 
 <% current_user.recipes.collect do |recipe| %>
   <h3 class="users_recipes">  <%= link_to recipe.name, recipe_path(recipe) %> </h3>
+  <p class="recipe_info">  Prep Time: <%= recipe.prep_time_in_minutes %> minutes<br>
+  Cook Time: <%= recipe.cook_time_in_minutes %> minutes<br>
+  <br>
+  </p>
   <button type="button" name="button"> <%= link_to 'Edit', edit_recipe_path(recipe) %> </button>
   <button type="button" name="button"> <%= link_to "Delete", recipe_path(recipe), method: :delete if logged_in? && current_user%> </button>
   <br>

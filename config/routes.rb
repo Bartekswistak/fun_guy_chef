@@ -25,5 +25,5 @@ Rails.application.routes.draw do
     post '/comments' => 'comments#create'
   end
 
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:destroy]
 end
