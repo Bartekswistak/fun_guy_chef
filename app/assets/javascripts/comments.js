@@ -104,36 +104,34 @@ function Comment(comment) {
   $(function editComment(){
     $('body').on("click",'a.ecomment', function(e){
       e.preventDefault();
+      $.get(this.href).success(function(data){
+        var $form = $('form.edit_comment').load($(data))
+        debugger
+        
+      })
 
-     $.ajax( {
-      type: "GET",
-      url: "/recipes/" + `:recipe_id` + "/comments/" + `:comment_id` + "",
-      data: "",
-      success: function(response) {
-        $(this).parent().replaceWith(response);
-      }
-    });
-    return false;
+
+
+
+    //  $.ajax( {
+    //   type: "GET",
+    //   url: $(this).href,
+    //   data: "",
+    //   success: function(response) {
+        
+    //     $(this).parent().replaceWith(response);
+    //   }
+    // });
+    // return false;
   });
 });
 
-     
-      // $(this).parent().hide();
-      //  $(".editing").show();
-
-  //   });
-  // });
 
   $(function cancelEdit() {
     $('body').on("click",'button.cancel', function(e){
       e.preventDefault();
         
        
-      
-        
-      // $("form.editing").hide();
-      // $("form.editing").prev().show();
-        
     })
   })
   

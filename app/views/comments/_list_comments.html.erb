@@ -14,14 +14,4 @@
 <%= link_to "Delete", comment_path(comment), method: :delete, class: 'dcomment' if current_user == comment.user%>
 <% end %>
 </div>
-  <form class="editing">
-  <h3> Edit your comment: </h3>
-    <p> Edit Rating </p>
-      <input type="text" class="edit-rating" />
-    <p> Edit Description </p>
-      <input type="text_area" class="edit-description" /> <br>
-      <input type="submit" class="submit-edit" \>
-      <button type="cancel" class="cancel">Cancel</button>
-
-  </form>
 </div>
