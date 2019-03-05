@@ -41,50 +41,6 @@ function Comment(comment) {
   this.rating = comment.rating;
   this.user = comment.user;
 }
-
-
-//Form posted correctly first but commentConfirm not triggered//
-
-// $(function createComment() {
-//   $("#new_comment").on("submit", function(e) {
-//     e.preventDefault();
-
-//     const values = $(this).serialize()
-  
-//     $.post(this.action, values).success(function(response) {
-//       const newComment = new Comment(response);
-      
-//       $('div.comments_container').append('<div class="new_comment_' + `${response.id}` + '"> </div>')
-
-//       $('div.new_comment_'+ `${response.id}`).append('<h3 class="cheading">' + newComment.user.name + ' gives ' + newComment.rating + ' out of 5 stars! </h3>')
-//       $('div.new_comment_'+ `${response.id}`).append('<p class="cdescription">' + newComment.description + '</p>')
-//       $('div.new_comment_'+ `${response.id}`).append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
-//       $('div.new_comment_'+ `${response.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
-      
-//     });
-
-// $('form#new_comment')[0].reset();
-  
-//   });
-// });
-
-// Comment.prototype.commentConfirm = function() {
-  
-//   let doIt = confirm(`You are about to comment: "${this.description}" and give a rating of: ${this.rating} stars`);
-//     if(doIt == true) {
-//       return true;
-//     } 
-//     else {
-//       return false;
-//     }
-//   };
-
-// function Comment(comment) {
-//   this.description = comment.description;
-//   this.rating = comment.rating;
-//   this.user = comment.user;
-// }
-
   
   $(function deleteComment() {
     $('body').on("click",'a.dcomment', function(e){
@@ -103,12 +59,19 @@ function Comment(comment) {
  
   $(function editComment(){
     $('body').on("click",'a.ecomment', function(e){
-      e.preventDefault();
+      e.preventDefault();        
       $.get(this.href).success(function(data){
-        var $form = $('form.edit_comment').load($(data))
-        debugger
+        var editForm = $(data).find('.edit_comment').html();
+        var id = $(data).find('.edit_comment')[0].id.match(/\d+/)[0]
         
-      })
+          $('div.new_comment_' + id).replaceWith('<h3> Edit your Comment: </h3>' + editForm);
+        
+
+
+       });
+  
+        
+        
 
 
 
