@@ -6,9 +6,22 @@ p.recipe_info{
     display: none;
 }
 
-.editing {
-    display: none;
+.comment_form {
+    position: relative;
 }
 
-
+.comments_container {
+    position: absolute;
+    height: auto;
+    top: 93%;
+    width: 100%;
+    background-color: beige;
+    padding-bottom: 100px;
+    border-style: solid;
+    border-color: rgb(40,45,60);
+    border-top: none;
+    border-left: none;
+    margin-left: auto;
+    margin-right: auto;
+}
 

@@ -19,13 +19,13 @@
     <h3 class="author">Added by: <%= @recipe.user.name %></h3>
 <br>
 
-<h2>
-    <%= link_to "Hide Comments","#", id: 'comments_link' %>
-</h2>
-
 <%= render 'comments/list_comments', comments: @recipe.comments if @recipe.comments %>
 
 <h4>
   Add your comment below! (You must be signed in)
 </h4>
 <%= render 'comments/form', comment: @recipe.comments.new, recipe: @recipe%>
+
+<h2>
+    <%= link_to "Hide Comments","#", id: 'comments_link' %>
+</h2>
