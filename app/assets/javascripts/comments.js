@@ -65,21 +65,20 @@ function Comment(comment) {
         var id = $(data).find('.edit_comment')[0].id.match(/\d+/)[0]
         
           $('div.new_comment_' + id).hide();
-          $('div.comments_container').append('<h3> Edit your Comment: </h3>' + editForm + "<button class ='cancel_edit'>Cancel</button>")
+          $('div.comments_container').prepend('<div class="edit_comment_form"><h3> Edit your Comment: </h3>' + editForm + "<button class ='cancel_edit'>Cancel</button></div>")
         
           
        });
   });
 });
-      //Edit form with values is successfully displayed, now work on the actual updating and ability to cancel to revert
+      //Edit form with values is successfully displayed, now work on the actual updating 
 
   $(function canclEdit() {
     $('body').on("click", 'button.cancel_edit', function(){
       var id = $('.ecomment')[0].href.split("/")[6]
         $('div.new_comment_' + id).show();
-        $('div.new_comment_' + id).siblings().hide();
-       
-          
+        $('div.edit_comment_form').hide();
+              
     })
   })
 
