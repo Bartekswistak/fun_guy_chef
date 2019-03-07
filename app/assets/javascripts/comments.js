@@ -64,36 +64,29 @@ function Comment(comment) {
         var editForm = $(data).find('.edit_comment').html();
         var id = $(data).find('.edit_comment')[0].id.match(/\d+/)[0]
         
-          $('div.new_comment_' + id).replaceWith('<h3> Edit your Comment: </h3>' + editForm);
+          $('div.new_comment_' + id).hide();
+          $('div.comments_container').append('<h3> Edit your Comment: </h3>' + editForm + "<button class ='cancel_edit'>Cancel</button>")
         
-
-
+          
        });
-  
-        
-        
-
-
-
-
-    //  $.ajax( {
-    //   type: "GET",
-    //   url: $(this).href,
-    //   data: "",
-    //   success: function(response) {
-        
-    //     $(this).parent().replaceWith(response);
-    //   }
-    // });
-    // return false;
   });
 });
+      //Edit form with values is successfully displayed, now work on the actual updating and ability to cancel to revert
 
+  $(function canclEdit() {
+    $('body').on("click", 'button.cancel_edit', function(){
+      var id = $('.ecomment')[0].href.split("/")[6]
+        $('div.new_comment_' + id).show();
+        $('div.new_comment_' + id).siblings().hide();
+       
+          
+    })
+  })
 
-  $(function cancelEdit() {
-    $('body').on("click",'button.cancel', function(e){
+  $(function submitEdit() {
+    $('body').on("submit",'button#submit_comment'[0], function(e){
       e.preventDefault();
-        
+        alert('okay i got you')
        
     })
   })
