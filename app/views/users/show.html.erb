@@ -1,5 +1,9 @@
 <h1 class ="user"><%= @user.name %>'s Recipes</h1>
 
+<% if current_user.recipes.size == 0 %>
+  <h2>Create your first recipe by clicking <%= link_to "Add Recipe", new_user_recipe_path(current_user) %></h2>
+<% else %>
+
 <% current_user.recipes.collect do |recipe| %>
   <h3 class="users_recipes">  <%= link_to recipe.name, recipe_path(recipe) %> </h3>
   <p class="recipe_info">  Prep Time: <%= recipe.prep_time_in_minutes %> minutes<br>
@@ -9,4 +13,5 @@
   <button type="button" name="button"> <%= link_to 'Edit', edit_recipe_path(recipe) %> </button>
   <button type="button" name="button"> <%= link_to "Delete", recipe_path(recipe), method: :delete if logged_in? && current_user%> </button>
   <br>
+<% end %>
 <% end %>

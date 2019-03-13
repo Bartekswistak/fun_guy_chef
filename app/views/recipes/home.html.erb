@@ -1,1 +1,5 @@
+<% if @recipes.count == 0 %>
+  <h2>There are no recipes posted yet, be the first to create one!</h2>
+  <% else %>
 <%= render 'recipe_details' %>
+<% end %>
