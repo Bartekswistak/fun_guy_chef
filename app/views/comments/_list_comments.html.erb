@@ -1,17 +1,18 @@
 <div class="comments_container">
 
-<% comments.each do |comment| %>
-  <div class='new_comment_<%=comment.id%>'>
-<h3 class="cheading">
-  <%= comment.user.name %><%= " gives #{comment.rating} out of 5 stars!"%>
-</h3>
-<p class="cdescription">
-  <%= comment.description %>
-</p>
+  <% comments.each do |comment| %>
+    <div class='new_comment_<%=comment.id%>'>
+      <h3 class="cheading">
+        <%= comment.user.name %><%= " gives #{comment.rating} out of 5 stars!"%>
+      </h3>
+      <p class="cdescription">
+        <%= comment.description %>
+      </p>
 
-<%= link_to "Edit", edit_recipe_comment_path(comment.recipe, comment),class: 'ecomment' if current_user == comment.user%>
+      <%= link_to "Edit", edit_recipe_comment_path(comment.recipe, comment),class: 'ecomment' if current_user == comment.user%>
 
-<%= link_to "Delete", comment_path(comment), method: :delete, class: 'dcomment' if current_user == comment.user%>
-<% end %>
-</div>
+      <%= link_to "Delete", comment_path(comment), method: :delete, class: 'dcomment' if current_user == comment.user%>
+
+  </div>
+  <% end %>
 </div>
