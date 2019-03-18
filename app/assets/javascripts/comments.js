@@ -62,34 +62,21 @@ function Comment(comment) {
       e.preventDefault();
       var thiscomment = $(this).parent()[0];
 
-      $.get(this.href).success(function(data){
-        var editForm = $(data).find('.edit_comment').html();
-        var id = $(data).find('.edit_comment')[0].id.match(/\d+/)[0]
-//debugger
-          $(thiscomment).replaceWith('<div class="edit_comment_form"><h3> Edit your Comment: </h3>' + editForm + "<button class ='cancel_edit'>Cancel</button></div>")
-
+    $.get(this.href).success(function(data){
+      var editForm = $(data).find('.edit_comment').html();
+        $(thiscomment).replaceWith('<div class="edit_comment_form"><h3> Edit your Comment: </h3>' + editForm + "<button class ='cancel_edit'>Cancel</button></div>")
           $('body').on("click", 'button.cancel_edit', function(){
             $('div.edit_comment_form').replaceWith(thiscomment);
-       });
-     });
-   });
-      //Edit form with values is successfully displayed, now work on the actual updating
-
-  // $(function canclEdit() {
-  //   $('body').on("click", 'button.cancel_edit', function(){
-  //     debugger
-      // var id = $('.ecomment')[0].href.split("/")[6]
-      // $('div.edit_comment_form').replaceWith($('div.new_comment_' + id));
-      // //  $('div.new_comment_' + id).show();
-
-
+          });
+        });
+      });
     });
 
   $(function submitEdit() {
     $('body').on("submit",'button#submit_comment'[0], function(e){
       e.preventDefault();
-        alert('okay i got you')
-
+        alert('okay');
+          updateComments
     })
   })
 
@@ -100,7 +87,7 @@ function Comment(comment) {
       type: "PATCH",
       data: $(data).serialize(),
       success: function(response) {
-        //update DOM/do something
+          $('div.edit_comment_form').replaceWith(response)
       }
     });
   };
