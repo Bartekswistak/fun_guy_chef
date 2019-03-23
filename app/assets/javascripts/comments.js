@@ -68,29 +68,47 @@ function Comment(comment) {
           $('body').on("click", 'button.cancel_edit', function(){
             $('div.edit_comment_form').replaceWith(thiscomment);
           });
-        });
+          $('body').on("click",'button#submit_edit_comment', function(){
+            debugger
+            // const editedComment = new Comment({
+            //         description: $('#comment_description').val(),
+            //         rating: $('#comment_rating').val()
+            //       });
+            $.ajax({
+              url: this.formAction,
+              type: "PATCH",
+              data: $(data).serialize(),
+              success: function(response) {
+                 $('div.edit_comment_form').replaceWith(response)
+              }
+            });
+            
+          // $('div.edit_comment_form').replaceWith(editedComment);
+        })        
+        })
       });
     });
+    
 
-  $(function submitEdit() {
-    $('body').on("submit",'button#submit_comment'[0], function(e){
-      e.preventDefault();
-        alert('okay');
-          updateComments
-    })
-  })
+  // $(function submitEdit(){
+  //   $('body').on("click",'button#submit_edit_comment', function(e){
+  //     e.preventDefault();
+  //     const editedComment = new Comment({
+  //       description: $('#comment_description').val(),
+  //       rating: $('#comment_rating').val()
+  //     });
+      
+  //     $('div.edit_comment_form').replaceWith(editedComment);
+  //            debugger
+  //   })
+  // })
+ 
 
 
-  var updateComments = (data) => {
-    $.ajax({
-      url: data.action,
-      type: "PATCH",
-      data: $(data).serialize(),
-      success: function(response) {
-          $('div.edit_comment_form').replaceWith(response)
-      }
-    });
-  };
+
+
+
+
 
   $(function showComments(){
     $('#comments_link').on("click", function(e){
