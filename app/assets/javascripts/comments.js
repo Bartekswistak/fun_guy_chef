@@ -67,11 +67,11 @@ function Comment(comment) {
         $(thiscomment).replaceWith('<div class="edit_comment_form"><h3> Edit your Comment: </h3>' + editForm + "<button class ='cancel_edit'>Cancel</button></div>")
           $('body').on("click", 'button.cancel_edit', function(){
             $('div.edit_comment_form').replaceWith(thiscomment);
-          });
-        });
+          });        
+        })
       });
     });
-
+  
   $(function submitEdit(){
     $('body').on("click",'button#submit_edit_comment', function(){
 
