@@ -47,9 +47,10 @@ class CommentsController < ApplicationController
 
   def update
     comment = find_by_id(Comment)
-    if current_user == comment.user
+    if logged_in?
       comment.update(comment_params)
-      redirect_to recipe_path(comment.recipe), notice: "Your comment has been updated"
+      render json: comment.to_json(only: [:rating, :description, :id, :recipe_id],
+      include: [user: { only: [:name]}])
     else
       redirect_to recipe_path(comment.recipe), alert: "You can only edit your own comments"
     end
@@ -69,6 +70,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-     params.require(:comment).permit(:rating, :description)
+     params.require(:comment).permit(:rating, :description, :user)
   end
 end

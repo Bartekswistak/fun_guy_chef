@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'recipes_sorted_by_cook_time' => 'recipes#sorted_cook_time'
 
   post '/recipes/:recipe_id' => 'comments#create'
+  patch '/recipes/:recipe_id' => 'comments#update'
 
   resources :users do
     resources :recipes, except: [:destroy]
