@@ -6,7 +6,7 @@ $(function createComment() {
       description: $('#comment_description').val(),
       rating: $('#comment_rating').val()
     };
-
+    
     const newComment = new Comment(values);
     newComment.commentConfirm();
 
@@ -80,10 +80,12 @@ function Comment(comment) {
         rating: $('#comment_rating').val()
       });
       
+      // AJAX request is not firing
+      
       $.ajax({
         url: this.formAction,
         type: "PATCH",
-        data: $(editedComment),
+        data: JSON.stringify(editedComment),
         success: function(response) {
           console.log(response)
           debugger

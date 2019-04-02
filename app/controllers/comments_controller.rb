@@ -23,36 +23,21 @@ class CommentsController < ApplicationController
       end
     end
 
-
-  #   @comment = Comment.new(comment_params)
-  #   @comment.recipe = find_by_recipe_id
-  #   @comment.user = current_user
-  #     respond_to do |format|
-  #       if @comment.save
-  #         format.html { redirect_to recipe_path(@comment.recipe), notice: 'Comment was successfully created.' }
-  #         format.json { render json: comment.to_json(only: [:rating, :description, :id, :recipe_id],
-  #                                          include: [user: { only: [:name]}])}
-  #       else
-  #         format.html { redirect_to recipe_path(@comment.recipe), alert: "You can't leave the comment box blank. Please try again!" }
-  #         format.json { render json: @comment.errors, status:400 }
-  #       end
-  #     end
-  #   end
-  # end
-  
-
   def edit
     @comment = find_by_id(Comment)
   end
 
   def update
     comment = find_by_id(Comment)
-    if logged_in?
-      comment.update(comment_params)
-      render json: comment.to_json(only: [:rating, :description, :id, :recipe_id],
-      include: [user: { only: [:name]}])
-    else
-      redirect_to recipe_path(comment.recipe), alert: "You can only edit your own comments"
+    respond_to do |format|
+      if comment.update(comment_params)
+        format.html { redirect_to recipe_path(comment.recipe), notice: 'Comment was successfully created.' }
+        format.json { render json: comment.to_json(only: [:rating, :description, :id, :recipe_id],
+                                          include: [user: { only: [:name]}])}
+      else
+        format.html { redirect_to recipe_path(comment.recipe), alert: "You can't leave the comment box blank. Please try again!" }
+        format.json { render json: comment.errors, status:400 }
+      end
     end
   end
 

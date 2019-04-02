@@ -1,4 +1,4 @@
-<div class="comment_form">
+<div class="edit_comment_form">
 <%= form_for [recipe, comment] do |f| %>
   <%= render 'layouts/form_errors', form: comment %>
   <div>Rating: (1-5)</div> <div><%= f.text_field :rating %></div>
