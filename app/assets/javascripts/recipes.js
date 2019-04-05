@@ -20,7 +20,7 @@ $(function() {
 		e.preventDefault();
 		if(x < max_fields){ 
 			x++; 
-      $(wrapper).append('<div class="recipe_form">Select Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + ']ingredient_id]"/>Or Add New Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][ingredient][name]"/>Amount:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][quantity]"/><a href="#" class="remove_field">Remove</a></div>');
+      $(wrapper).append('<div class="recipe_form">Add New Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][ingredient][name]"/>Amount:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][quantity]"/><a href="#" class="remove_field">Remove</a></div>');
 		}
 	});
 	
@@ -32,15 +32,24 @@ $(function() {
 $(function(){
 	$('#submit_recipe').click(function(e){
 		e.preventDefault();
+
+		const values = {
+			name: $('#recipe_name').val(),
+			cook_time_in_minutes: $('#recipe_cook_time_in_minutes').val(),
+			prep_time_in_minutes: $('#recipe_prep_time_in_minutes').val(),
+			instructions: $('#recipe_instructions').val()
+		  };
 		
 		let params = {
 			'recipe[cook_time_in_minutes]': this.cook_time_in_minutes,
 			'recipe[prep_time_in_minutes]': this.prep_time_in_minutes,
 			'recipe[instructions]': this.instructions
 		  };
-	
+
+		  const newRecipe = new Recipe(values);
+	debugger
 	$.post(this.action, params).success(function(response) {
-		debugger
+		
 	})
 	})
 })
@@ -51,3 +60,21 @@ function Recipe(recipe) {
 	this.instructions = recipe.instructions;
 	this.user = recipe.user;
   }
+
+   $(function editRecipe(){
+    $('body').on("click",'a#edit_recipe', function(e){
+      e.preventDefault();
+
+		var thisrecipe = $('div.container')[0]
+		
+    $.get(this.href).success(function(data){
+      var editForm = $(data).find('div.container').html();
+        $('div.container').replaceWith(editForm + "<button class ='cancel_edit_recipe'>Cancel</button></div>")
+			$('body').on("click", 'button.cancel_edit_recipe', function(){
+
+				$('div.edit_recipe_form').replaceWith(thisrecipe);
+          });        
+        });
+	  });
+	});
+    

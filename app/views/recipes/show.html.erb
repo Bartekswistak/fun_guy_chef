@@ -1,4 +1,4 @@
-<h1 class= "recipe_title"><%= @recipe.name %> <button type="button" name="button"> <%= link_to 'Edit', edit_recipe_path(@recipe) %> </button>
+<h1 class= "recipe_title"><%= @recipe.name %> <button type="button" name="button"> <%= link_to 'Edit', edit_recipe_path(@recipe), id: 'edit_recipe' %> </button>
 </h1>
 
   <h3 class= "cook_time">Prep Time: <%= @recipe.prep_time_in_minutes %> minutes ---
