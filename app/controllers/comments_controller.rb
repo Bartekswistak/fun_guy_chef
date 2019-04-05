@@ -55,6 +55,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-     params.require(:comment).permit(:rating, :description, :user)
+     params.fetch(:comment, {}).permit(:rating, :description, :user)
   end
 end

@@ -1,4 +1,4 @@
-<div class="recipe_form">
+<div class="edit_recipe_form">
 
 <%= form_for @recipe do |f| %>
 
@@ -33,6 +33,6 @@
    <%= f.label :instructions %>
    <%= f.text_area :instructions, size: "100x10" %>
    <br>
-  <%= f.submit "Create Recipe", id: "submit_recipe"%>
+  <%= f.submit "Update Recipe", id: "submit_edit_recipe"%>
 <% end %>
 </div>

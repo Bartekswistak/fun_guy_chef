@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
 
   get '/users/:user_id/recipes' => 'users#show'
+  post '/users/:user_id/recipes/new' => 'recipes#create'
 
   get 'recipes_sorted_by_cook_time' => 'recipes#sorted_cook_time'
 
   post '/recipes/:recipe_id' => 'comments#create'
-  patch '/recipes/:recipe_id' => 'comments#update'
 
   resources :users do
     resources :recipes, except: [:destroy]

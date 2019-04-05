@@ -28,3 +28,26 @@ $(function() {
 		e.preventDefault(); $(this).parent('div').remove(); x--;
 	})
 });
+
+$(function(){
+	$('#submit_recipe').click(function(e){
+		e.preventDefault();
+		
+		let params = {
+			'recipe[cook_time_in_minutes]': this.cook_time_in_minutes,
+			'recipe[prep_time_in_minutes]': this.prep_time_in_minutes,
+			'recipe[instructions]': this.instructions
+		  };
+	
+	$.post(this.action, params).success(function(response) {
+		debugger
+	})
+	})
+})
+
+function Recipe(recipe) {
+	this.cook_time_in_minutes = recipe.cook_time_in_minutes;
+	this.prep_time_in_minutes = recipe.prep_time_in_minutes;
+	this.instructions = recipe.instructions;
+	this.user = recipe.user;
+  }
