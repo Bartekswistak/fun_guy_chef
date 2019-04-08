@@ -102,9 +102,10 @@ function Comment(comment) {
   $(function showComments(){
     $('#comments_link').on("click", function(e){
       e.preventDefault();
-      $('.comments_container').fadeToggle()
-    });
+      $('.comments_container').slideToggle(1000)
+    })
   });
+
 
 $(function() {
     $("#comments_link").click(function () {
