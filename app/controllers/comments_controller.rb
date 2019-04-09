@@ -31,11 +31,11 @@ class CommentsController < ApplicationController
     comment = find_by_id(Comment)
     respond_to do |format|
       if comment.update(comment_params)
-        format.html { redirect_to recipe_path(comment.recipe), notice: 'Comment was successfully created.' }
+        format.html { redirect_to recipe_path(comment.recipe), notice: 'Comment was successfully updated.' }
         format.json { render json: comment.to_json(only: [:rating, :description, :id, :recipe_id],
                                           include: [user: { only: [:name]}])}
       else
-        format.html { redirect_to recipe_path(comment.recipe), alert: "You can't leave the comment box blank. Please try again!" }
+        format.html { redirect_to recipe_path(comment.recipe), alert: "That was not a valid comment or rating... Please try again!" }
         format.json { render json: comment.errors, status:400 }
       end
     end
