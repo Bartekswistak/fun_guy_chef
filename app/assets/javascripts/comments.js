@@ -113,7 +113,7 @@ function Comment(comment) {
     
 
   $(function showComments(){
-    $('#comments_link').on("click", function(e){
+    $('body').on("click",'#comments_link', function(e){
       e.preventDefault();
       $('.comments_container').slideToggle(1000)
     })
@@ -121,7 +121,7 @@ function Comment(comment) {
 
 
 $(function() {
-    $("#comments_link").click(function () {
+  $('body').on("click",'#comments_link', function () {
         $("#comments_link").fadeOut(function () {
             $("#comments_link").text(($("#comments_link").text() == 'View Comments') ? 'Hide Comments' : 'View Comments').fadeIn();
         })
