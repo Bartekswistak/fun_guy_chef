@@ -1,6 +1,6 @@
 <div class="comments_container">
 <% if comments.count == 0 %>
-  <h2>There are no comments posted yet, be the first to create one!</h2>
+  <h2 class="no_comment_message">There are no comments posted yet, be the first to create one!</h2>
   <% else %>
 <%end%>
   <% comments.each do |comment| %>

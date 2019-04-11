@@ -18,10 +18,10 @@
   <button class="add_field_button">Add More Ingredients</button>
    <div class="ingredient_form">
     <%= f.fields_for :recipe_ingredients, @ingredients do |recipe_ingredient| %>
-    <div>
+    <div class='ingredient_entry_form'>
     Select Ingredient: <%= recipe_ingredient.collection_select :ingredient_id, Ingredient.order('name ASC').all, :id, :name, include_blank: 'Select Ingredient' %>
     <%= recipe_ingredient.fields_for :ingredient, @recipe.ingredients.build do |ingredient| %>
-     Add New Ingredient: <%= ingredient.text_field :name %>
+     Or Add New Ingredient: <%= ingredient.text_field :name %>
       Amount: <%= recipe_ingredient.text_field :quantity %>
       <a href="#" class="remove_field">Remove</a>
 

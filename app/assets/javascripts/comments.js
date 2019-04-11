@@ -1,5 +1,5 @@
 $(function createComment() {
-  $("#new_comment").on("submit", function(e) {
+  $('body').on("submit","#new_comment", function(e) {
     e.preventDefault();
 
     const values = {
@@ -32,6 +32,7 @@ Comment.prototype.commentConfirm = function(e) {
       $('div.new_comment_'+ `${response.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
 
       $('form#new_comment')[0].reset();
+      $('h2.no_comment_message').remove();
     });
   };
 };
@@ -39,20 +40,7 @@ Comment.prototype.commentConfirm = function(e) {
 function Comment(comment) {
   this.description = comment.description;
   this.rating = comment.rating;
-  this.user = comment.user;  // $(function editComment(){
-    //   $('body').on("click",'a.ecomment', function(e){
-    //     e.preventDefault();
-    //     var thiscomment = $(this).parent()[0];
-  
-    //   $.get(this.href).success(function(data){
-    //     var editForm = $(data).find('.edit_comment').html();
-    //       $(thiscomment).replaceWith('<div class="edit_comment_form"><h3> Edit your Comment: </h3>' + editForm + "<button class ='cancel_edit'>Cancel</button></div>")
-    //         $('body').on("click", 'button.cancel_edit', function(){
-    //           $('div.edit_comment_form').replaceWith(thiscomment);
-    //         });        
-    //       })
-    //     });
-    //   });
+  this.user = comment.user;
 }
 
   $(function deleteComment() {

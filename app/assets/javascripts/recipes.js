@@ -18,11 +18,11 @@ $(function editRecipe(){
 	
 	$.get(this.href).success(function(data){
 		var editForm = $(data).find('div.container').html();
-			$('div.container').replaceWith(editForm)
-		$('body').on("click", 'button.cancel_edit_recipe', function(){
-			$('div.edit_recipe_form').replaceWith(thisrecipe);
-				 });        
-			});
+		$('div.container').replaceWith(editForm)
+			$('body').on("click", 'button.cancel_edit_recipe', function(){
+				$('div.edit_recipe_form').replaceWith(thisrecipe);
+			 });        
+		});
 	});
 });
 
@@ -35,44 +35,59 @@ $(function addMoreIngredients() {
 		e.preventDefault();
 		if(x < max_fields){ 
 			x++; 
-      $(wrapper).append('<div class="recipe_form">Add New Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][ingredient][name]"/>Amount:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][quantity]"/><a href="#" class="remove_field">Remove</a></div>');
-		}
+      		$(wrapper).append('<div class="recipe_form">Add New Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][ingredient][name]"/>Amount:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][quantity]"/><a href="#" class="remove_field">Remove</a></div>');
+		};
 	});
 	
 	$(wrapper).on("click",".remove_field", function(e){ 
 		e.preventDefault(); 
-
+			
 		$(this).parent('div').remove(); x--;
-		$(this).parent('div').reset()
-
-	})
+		$(this).parent('div').reset();
+	});
 });
 
 $(function showNextRecipe() {
 	$('body').on('click', 'a.next', function(e){
 		e.preventDefault();
 		
-		let url = '/recipes/2'
-
-		$.get(url).success(function(data){
+		let this_recipe_id = parseInt(this.href.match(/[^\/]*$/)[0]);
+			this_recipe_id++;
+		
+		let next_recipe_url = '/recipes/' + this_recipe_id
+		
+		$.get(next_recipe_url).success(function(data){
+			
 			let nextRecipe = $(data).find('div.container')
 
 			$('div.container').replaceWith(nextRecipe);
+
+			window.history.pushState('obj', 'PageTitle', next_recipe_url);
+   				return false;
 		});		
-			});
-		$('body').on('click', 'a.previous', function(e){
-			e.preventDefault();
-			let prevUrl = '/recipes/1'
-		
-		$.get(prevUrl).success(function(data){
-			let prevRecipe = $(data).find('div.container')
-		
-			$('div.container').replaceWith(prevRecipe);
-		});
 	});
 });
 
+$(function showPrevRecipe() {
+	$('body').on('click', 'a.previous', function(e){
+		e.preventDefault();
 
+		let this_recipe_id = parseInt(this.href.match(/[^\/]*$/)[0]);
+		this_recipe_id--;
+	
+		let prevUrl = '/recipes/' + this_recipe_id
+		
+
+		$.get(prevUrl).success(function(data){
+			let prevRecipe = $(data).find('div.container')
+
+			$('div.container').replaceWith(prevRecipe);
+			
+			window.history.pushState('obj', 'PageTitle', prevUrl);
+   				return false;
+		});
+	});
+});
 
 
 
