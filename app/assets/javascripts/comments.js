@@ -21,9 +21,10 @@ Comment.prototype.commentConfirm = function(e) {
       'comment[description]': this.description,
       'comment[rating]': this.rating
     };
+    let url = window.location.href
 
-  $.post(this.action, params).success(function(response) {
-
+  $.post(url, params).success(function(response) {
+      
     $('div.comments_container').append('<div class="new_comment_' + `${response.id}` + '"> </div>')
 
       $('div.new_comment_'+ `${response.id}`).append('<h3 class="cheading">' + response.user.name + ' gives ' + response.rating + ' out of 5 stars! </h3>')
