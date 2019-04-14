@@ -26,17 +26,33 @@ $(function showUsersRecipes() {
 	});
 });
 
+$(function showRecipe() {
+	$('a#recipe_link').click(function(e){
+		e.preventDefault();
+	
+		let thisUrl = this.href
+		
+	$.get(thisUrl).success(function(data){
+		let thisRecipe = $(data).find('div.container')
+			$('div.container').replaceWith(thisRecipe)
+			
+			window.history.pushState('obj', 'PageTitle', thisUrl);
+   				return false;
+		});
+	});
+});
+
 $(function editRecipe(){
 	$('body').on("click",'a#edit_recipe', function(e){
 		e.preventDefault();
 
-	var thisrecipe = $('div.container')[0]
+	var thisRecipe = $('div.container')[0]
 	
 	$.get(this.href).success(function(data){
 		var editForm = $(data).find('div.container').html();
-		$('div.container').replaceWith(editForm)
+		$(thisRecipe).replaceWith(editForm)
 			$('body').on("click", 'button.cancel_edit_recipe', function(){
-				$('div.edit_recipe_form').replaceWith(thisrecipe);
+				$('div.edit_recipe_form').replaceWith(thisRecipe);
 			 });        
 		});
 	});
@@ -63,47 +79,52 @@ $(function addMoreIngredients() {
 	});
 });
 
-$(function showNextRecipe() {
-	$('body').on('click', 'a.next', function(e){
-		e.preventDefault();
+
+
+// Rather than increment the recipe id, need to increment its position in the recipe array.
+
+
+// $(function showNextRecipe() {
+// 	$('body').on('click', 'a.next', function(e){
+// 		e.preventDefault();
 		
-		let this_recipe_id = parseInt(this.href.match(/[^\/]*$/)[0]);
-			this_recipe_id++;
+// 		let this_recipe_id = parseInt(this.href.match(/[^\/]*$/)[0]);
+// 			this_recipe_id++;
 		
-		let next_recipe_url = '/recipes/' + this_recipe_id
+// 		let next_recipe_url = '/recipes/' + this_recipe_id
 		
-		$.get(next_recipe_url).success(function(data){
+// 		$.get(next_recipe_url).success(function(data){
 			
-			let nextRecipe = $(data).find('div.container')
+// 			let nextRecipe = $(data).find('div.container')
 
-			$('div.container').fadeOut(1000).replaceWith(nextRecipe.fadeIn(1000));
+// 			$('div.container').fadeOut(1000).replaceWith(nextRecipe.fadeIn(1000));
 		
-			window.history.pushState('obj', 'PageTitle', next_recipe_url);
-   				return false;
-		});		
-	});
-});
+// 			window.history.pushState('obj', 'PageTitle', next_recipe_url);
+//    				return false;
+// 		});		
+// 	});
+// });
 
-$(function showPrevRecipe() {
-	$('body').on('click', 'a.previous', function(e){
-		e.preventDefault();
+// $(function showPrevRecipe() {
+// 	$('body').on('click', 'a.previous', function(e){
+// 		e.preventDefault();
 
-		let this_recipe_id = parseInt(this.href.match(/[^\/]*$/)[0]);
-		this_recipe_id--;
+// 		let this_recipe_id = parseInt(this.href.match(/[^\/]*$/)[0]);
+// 		this_recipe_id--;
 	
-		let prevUrl = '/recipes/' + this_recipe_id
+// 		let prevUrl = '/recipes/' + this_recipe_id
 		
 
-		$.get(prevUrl).success(function(data){
-			let prevRecipe = $(data).find('div.container')
+// 		$.get(prevUrl).success(function(data){
+// 			let prevRecipe = $(data).find('div.container')
 
-			$('div.container').fadeOut(1000).replaceWith(prevRecipe.fadeIn(1000));	
+// 			$('div.container').fadeOut(1000).replaceWith(prevRecipe.fadeIn(1000));	
 					
-			window.history.pushState('obj', 'PageTitle', prevUrl);
-   				return false;
-		});
-	});
-});
+// 			window.history.pushState('obj', 'PageTitle', prevUrl);
+//    				return false;
+// 		});
+// 	});
+// });
 
 
 

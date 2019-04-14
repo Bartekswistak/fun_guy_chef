@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
       respond_to do |f|
         f.html { render :home }
         f.json { render json: @recipes }
-    end
+      end
   end
 
   def new
@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
     if current_user == recipe.user
       recipe.update(recipe_params)
       recipe.add_ingredients_to_recipe(recipe_ingredient_params)
-      redirect_to recipe_path(recipe), notice: "Your recipe has successfully been updated"
+      redirect_to recipe_path(recipe)
     else
       redirect_to recipe_path(recipe), alert: "You cannot edit another user's recipe"
     end
@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
 
   def destroy
     recipe = find_by_id(Recipe)
-    recipe.delete
+    recipe.delete.html();
     redirect_to root_path
   end
 
