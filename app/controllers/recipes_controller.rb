@@ -2,6 +2,10 @@ class RecipesController < ApplicationController
 
   def home
     @recipes = Recipe.all
+      respond_to do |f|
+        f.html { render :home }
+        f.json { render json: @recipes }
+    end
   end
 
   def new
@@ -22,9 +26,10 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = find_by_id(Recipe)
-      if @recipe == nil
-        render "users/show"
-      end
+    respond_to do |f|
+      f.html { render :show }
+      f.json { render json: @recipe }
+    end
   end
 
   def edit

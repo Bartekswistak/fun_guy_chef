@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_08_152345) do
+ActiveRecord::Schema.define(version: 2019_04_14_163803) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "recipe_id", null: false
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2019_04_08_152345) do
     t.string "quantity", null: false
     t.integer "recipe_id", null: false
     t.integer "ingredient_id", null: false
-    t.string "ingredient_name"
     t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
     t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end

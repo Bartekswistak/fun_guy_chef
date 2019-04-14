@@ -60,8 +60,8 @@ $(function showNextRecipe() {
 			
 			let nextRecipe = $(data).find('div.container')
 
-			$('div.container').replaceWith(nextRecipe);
-
+			$('div.container').fadeOut(1000).replaceWith(nextRecipe.fadeIn(1000));
+		
 			window.history.pushState('obj', 'PageTitle', next_recipe_url);
    				return false;
 		});		
@@ -81,8 +81,8 @@ $(function showPrevRecipe() {
 		$.get(prevUrl).success(function(data){
 			let prevRecipe = $(data).find('div.container')
 
-			$('div.container').replaceWith(prevRecipe);
-			
+			$('div.container').fadeOut(1000).replaceWith(prevRecipe.fadeIn(1000));	
+					
 			window.history.pushState('obj', 'PageTitle', prevUrl);
    				return false;
 		});
