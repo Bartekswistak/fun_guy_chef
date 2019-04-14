@@ -10,6 +10,22 @@ $(function displayUserRecipeInfo(){
 	})
 });
 
+$(function showUsersRecipes() {
+	$('a#users_recipes').click(function(e){
+		e.preventDefault();
+	
+		let thisUrl = this.href
+		
+	$.get(thisUrl).success(function(data){
+		let myRecipes = $(data).find('div.container').html();
+			$('div.container').replaceWith(myRecipes)
+			
+			window.history.pushState('obj', 'PageTitle', thisUrl);
+   				return false;
+		});
+	});
+});
+
 $(function editRecipe(){
 	$('body').on("click",'a#edit_recipe', function(e){
 		e.preventDefault();
