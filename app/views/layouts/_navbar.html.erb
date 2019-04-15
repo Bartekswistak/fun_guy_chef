@@ -1,6 +1,6 @@
 <navbar>
   <%if logged_in? %>
-    | <%= link_to "Add Recipe", new_user_recipe_path(current_user) %> |
+    | <%= link_to "Add Recipe", new_user_recipe_path(current_user), id:'create_recipe' %> |
     <%= link_to "#{current_user.name}'s Recipes", user_recipes_path(current_user), id:'users_recipes' %> |
     <%= link_to "Sign out", signout_path, method: :delete %> |
   <% else %>

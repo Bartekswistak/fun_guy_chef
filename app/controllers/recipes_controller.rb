@@ -50,13 +50,16 @@ class RecipesController < ApplicationController
 
   def destroy
     recipe = find_by_id(Recipe)
-    recipe.delete.html();
+    recipe.delete
     redirect_to root_path
   end
 
   def sorted_cook_time
     @recipes = Recipe.fastest
-    render 'recipes/fastest'
+    respond_to do |f|
+      f.html { render 'recipes/fastest' }
+      f.json { render json: @recipes }
+    end
   end
 
 private

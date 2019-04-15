@@ -22,7 +22,7 @@
     <%= recipe_ingredient.fields_for :ingredient, @recipe.ingredients.build do |ingredient| %>
       Or Add New Ingredient: <%= ingredient.text_field :name %>
       Amount: <%= recipe_ingredient.text_field :quantity %>
-      <a href="#" class="remove_field">Remove</a>
+      
 
     <% end %>
     </div>
