@@ -1,14 +1,13 @@
-$(function displayRecipeInfo(){
-    $('body').on('mouseenter', 'a#recipe_link', function(){
-      $(this).next('p.recipe_info').slideDown(2000);
-	})
-});
-
-$(function displayUserRecipeInfo(){
-	$('body').on('mouseenter', 'a#user_recipe', function(){
-		$(this).next('p.recipe_info').slideDown(2000);
-	})
-});
+function Recipe(recipe) {
+	this.id = recipe.id;
+	this.name = recipe.name;
+	this.cook_time_in_minutes = recipe.cook_time_in_minutes;
+	this.prep_time_in_minutes = recipe.prep_time_in_minutes;
+	this.instructions = recipe.instructions;
+	this.ingredients = recipe.ingredients;
+	this.recipe_ingredients = recipe.recipe_ingredients;
+	this.user = recipe.user;
+  }
 
 $(function showUsersRecipes() {
 	$('body').on("click",'a#users_recipes', function(e){
@@ -16,13 +15,29 @@ $(function showUsersRecipes() {
 	
 		let thisUrl = this.href
 		
-	$.get(thisUrl).success(function(data){
-		let myRecipes = $(data).find('div.container');
-			$('div.container').replaceWith(myRecipes)
-			
-			window.history.pushState('obj', 'PageTitle', thisUrl);
-   				return false;
-		});
+		$.ajax({
+			action: 'GET',
+			url: thisUrl,
+			dataType: 'json',
+			success: function(json) {
+
+			let edit = '<button type="button" name="button"> <a href="/recipes/1/edit">Edit</a> </button>'
+			let remove = '<button type="button" name="button"> <a rel="nofollow" data-method="delete" href="/recipes/1">Delete</a> </button>'
+	
+				debugger
+				// We have grabbed the json of the user page here
+				// Need a way to loop this to show all user recipes...
+
+				$('div.container').hide();
+				$('div.page').append("<h1 class ='user'>" + json[0].user.name + "'s Recipes</h1>");
+				$('div.page').append("<h3 class='users_recipes'></h3>");
+				$('h3.users_recipes').append('<a id="user_recipe" href="/recipes/1">'+ json[0].name + '</a>') 
+				$('h3.users_recipes').append('<p class="recipe_info"> Prep Time: ' + json[0].prep_time_in_minutes + " minutes" + 
+												'<br> Cook Time: ' + json[0].cook_time_in_minutes + " minutes </p> <br>");
+				$('h3.users_recipes').append(edit + remove)
+
+
+		}});
 	});
 });
 
@@ -32,12 +47,16 @@ $(function showRecipe() {
 	
 		let thisUrl = this.href
 		
-	$.get(thisUrl).success(function(data){
-		let thisRecipe = $(data).find('div.container')
-			$('div.container').replaceWith(thisRecipe)
-			
-			window.history.pushState('obj', 'PageTitle', thisUrl);
-   				return false;
+		$.ajax({
+			action: 'GET',
+			url: thisUrl,
+			dataType: 'json',
+			success: function(json) {
+
+					// Append recipe show data from json to HTML
+					// also render comments at the bottom of the page...so probaby a function in comments.js to show comments..
+				debugger
+			}
 		});
 	});
 });
@@ -141,4 +160,16 @@ $(function addMoreIngredients() {
 
 		$(this).parent('div.ingredient_entry_form').remove(); x--;
 	});
+});
+
+$(function displayRecipeInfo(){
+    $('body').on('mouseenter', 'a#recipe_link', function(){
+      $(this).next('p.recipe_info').slideDown(2000);
+	})
+});
+
+$(function displayUserRecipeInfo(){
+	$('body').on('mouseenter', 'a#user_recipe', function(){
+		$(this).next('p.recipe_info').slideDown(2000);
+	})
 });
