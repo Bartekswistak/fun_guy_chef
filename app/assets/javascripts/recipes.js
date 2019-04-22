@@ -23,20 +23,26 @@ $(function showUsersRecipes() {
 
 			let edit = '<button type="button" name="button"> <a href="/recipes/1/edit">Edit</a> </button>'
 			let remove = '<button type="button" name="button"> <a rel="nofollow" data-method="delete" href="/recipes/1">Delete</a> </button>'
+		
+			$('div.container').remove();
+			$('div.page').append("<div class='container'>")
+			$('div.container').append("<h1 class ='user'>" + json[0].user.name + "'s Recipes</h1>");
+			$('div.container').append("<h3 class='users_recipes'></h3>");
+
+			$.each(json, function(index, element) {
+
+				// Need a recipe Id for showing and editing and deleting
+				
+				$('h3.users_recipes').append('<a id="user_recipe" href="/recipes/1">'+ element.name + '</a>') 
+				$('h3.users_recipes').append('<p class="recipe_info"> Prep Time: ' + element.prep_time_in_minutes + " minutes" + 
+												'<br> Cook Time: ' + element.cook_time_in_minutes + " minutes </p>");
+				$('h3.users_recipes').append('<br>' + edit + remove + '<br><br>')
+				
+				
+			});		
+			window.history.pushState('obj', 'PageTitle', thisUrl);
+   				return false;
 	
-				debugger
-				// We have grabbed the json of the user page here
-				// Need a way to loop this to show all user recipes...
-
-				$('div.container').hide();
-				$('div.page').append("<h1 class ='user'>" + json[0].user.name + "'s Recipes</h1>");
-				$('div.page').append("<h3 class='users_recipes'></h3>");
-				$('h3.users_recipes').append('<a id="user_recipe" href="/recipes/1">'+ json[0].name + '</a>') 
-				$('h3.users_recipes').append('<p class="recipe_info"> Prep Time: ' + json[0].prep_time_in_minutes + " minutes" + 
-												'<br> Cook Time: ' + json[0].cook_time_in_minutes + " minutes </p> <br>");
-				$('h3.users_recipes').append(edit + remove)
-
-
 		}});
 	});
 });
