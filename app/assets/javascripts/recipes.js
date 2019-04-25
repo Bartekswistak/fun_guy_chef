@@ -1,5 +1,5 @@
 function Recipe(recipe) {
-	this.id = recipe.id;
+	this.recipe_id = recipe.recipe_id;
 	this.name = recipe.name;
 	this.cook_time_in_minutes = recipe.cook_time_in_minutes;
 	this.prep_time_in_minutes = recipe.prep_time_in_minutes;
@@ -32,7 +32,7 @@ $(function showUsersRecipes() {
 			$.each(json, function(index, element) {
 
 				// Need a recipe Id for showing and editing and deleting
-				
+
 				$('h3.users_recipes').append('<a id="user_recipe" href="/recipes/1">'+ element.name + '</a>') 
 				$('h3.users_recipes').append('<p class="recipe_info"> Prep Time: ' + element.prep_time_in_minutes + " minutes" + 
 												'<br> Cook Time: ' + element.cook_time_in_minutes + " minutes </p>");
@@ -58,10 +58,22 @@ $(function showRecipe() {
 			url: thisUrl,
 			dataType: 'json',
 			success: function(json) {
-
-					// Append recipe show data from json to HTML
+				
+				$('div.container').remove();
+				$('div.page').append("<div class='container'>")
+				$('div.container').append('<h1 class="recipe_title">' + json.name + '</h1>')
+				$('div.container').append('<h3 class= "cook_time">Prep Time: ' + json.prep_time_in_minutes + ' minutes ' + '--- Cook Time: ' + json.cook_time_in_minutes + ' minutes')
+				$('div.container').append('<h4 class="ingredients"> Ingredients: </h4>')
+				
+					$.each(json, function(index, element) {
+					
+						// $('h4.ingredients').append(element.recipe_ingredients.quantity + element.recipe_ingredients.ingredients.name)
+					})
+				$('div.container').append('<h4 class="instructions"> Instructions: </h4>')
+				$('div.container').append('<p class="recipe_instructions">' + json.instructions + '</p>')
+				$('div.container').append('<h3 class="author">Added by: ' + json.user.name + '</h3>')
 					// also render comments at the bottom of the page...so probaby a function in comments.js to show comments..
-				debugger
+				
 			}
 		});
 	});
