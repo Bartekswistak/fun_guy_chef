@@ -65,11 +65,16 @@ $(function showRecipe() {
 				$('div.container').append('<h1 class="recipe_title">' + newRecipe.name + '</h1>')
 				$('div.container').append('<h3 class= "cook_time">Prep Time: ' + newRecipe.prep_time_in_minutes + ' minutes ' + '--- Cook Time: ' + newRecipe.cook_time_in_minutes + ' minutes')
 				$('div.container').append('<h4 class="ingredients"> Ingredients: </h4>')
-				debugger
-					$.each(json, function(index, element) {
-					
-						// $('h4.ingredients').append(element.recipe_ingredients.quantity + element.recipe_ingredients.ingredients.name)
+				$('div.container').append('<ol class ="list">')
+				
+					$.each(json.ingredients, function(index, element) {						
+						$('.list').append('<li id="ingredient_name_' + element.id + '">' + element.name + '</li>')
 					})
+					
+					$.each(json.recipe_ingredients, function(index, element) {						
+						$('#ingredient_name_' + element.ingredient_id).prepend(element.quantity + " ")
+					})
+
 				$('div.container').append('<h4 class="instructions"> Instructions: </h4>')
 				$('div.container').append('<p class="recipe_instructions">' + newRecipe.instructions + '</p>')
 				$('div.container').append('<h3 class="author">Added by: ' + newRecipe.user.name + '</h3>')
@@ -184,11 +189,5 @@ $(function addMoreIngredients() {
 $(function displayRecipeInfo(){
     $('body').on('mouseenter', 'a#recipe_link', function(){
       $(this).next('p.recipe_info').slideDown(2000);
-	})
-});
-
-$(function displayUserRecipeInfo(){
-	$('body').on('mouseenter', 'a#user_recipe', function(){
-		$(this).next('p.recipe_info').slideDown(2000);
 	})
 });
