@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
     @recipe = find_by_id(Recipe)
     respond_to do |f|
       f.html { render :show }
-      f.json { render json: @recipe }
+      f.json { render json: @recipe}
     end
   end
 
@@ -65,11 +65,11 @@ class RecipesController < ApplicationController
 private
 
   def recipe_params
-    params.require(:recipe).permit(:recipe_id, :name, :prep_time_in_minutes, :cook_time_in_minutes, :instructions)
+    params.require(:recipe).permit(:id, :name, :prep_time_in_minutes, :cook_time_in_minutes, :instructions)
   end
 
   def recipe_ingredient_params
-    params.require(:recipe).permit(recipe_ingredients_attributes: [:quantity, :ingredient_id, ingredient: [:name]])
+    params.require(:recipe).permit(recipe_ingredients_attributes: [:quantity, :ingredient_id, :recipe_id, ingredient: [:name]])
   end
 
 end
