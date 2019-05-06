@@ -9,6 +9,56 @@ function Recipe(recipe) {
 	this.user = recipe.user;
   }
 
+
+  Recipe.prototype.displayRecipe = function(e){
+	
+		$('div.container').remove();
+		$('div.page').append("<div class='container'>")
+		$('div.container').append('<h1 class="recipe_title">' + this.name + '</h1>')
+		$('div.container').append('<h3 class= "cook_time">Prep Time: ' + this.prep_time_in_minutes + ' minutes ' + '--- Cook Time: ' + this.cook_time_in_minutes + ' minutes')
+		$('div.container').append('<h4 class="ingredients"> Ingredients: </h4>')
+		$('div.container').append('<ol class ="list">')
+				
+			$.each(this.ingredients, function(index, element) {						
+				$('.list').append('<li id="ingredient_name_' + element.id + '">' + element.name + '</li>')
+			})
+					
+			$.each(this.recipe_ingredients, function(index, element) {						
+				$('#ingredient_name_' + element.ingredient_id).prepend(element.quantity + " ")
+			})
+
+		$('div.container').append('<h4 class="instructions"> Instructions: </h4>')
+		$('div.container').append('<p class="recipe_instructions">' + this.instructions + '</p>')
+		$('div.container').append('<h3 class="author">Added by: ' + this.user.name + '</h3>')
+					
+				
+		// also render comments at the bottom of the page...so probaby a function in comments.js to show comments..				
+				
+		window.history.pushState('obj', 'PageTitle', thisUrl);
+		return false;
+		}
+	
+
+  $(function showRecipeFromUsers() {
+	$('body').on("click", 'a#user_recipe', function(e){
+		e.preventDefault();
+		
+		let thisUrl = this.href
+	
+		$.ajax({
+			action: 'GET',
+			url: thisUrl,
+			dataType: 'json',
+			success: function(json) {
+
+		let newRecipe = new Recipe(json)
+		newRecipe.displayRecipe();
+		}
+		});
+	})
+})
+	
+
 $(function showUsersRecipes() {
 	$('body').on("click",'a#users_recipes', function(e){
 		e.preventDefault();
@@ -51,8 +101,7 @@ $(function showRecipe() {
 		e.preventDefault();
 	
 		let thisUrl = this.href
-		
-		
+				
 		$.ajax({
 			action: 'GET',
 			url: thisUrl,
@@ -60,46 +109,15 @@ $(function showRecipe() {
 			success: function(json) {
 				let newRecipe = new Recipe(json)
 
-				$('div.container').remove();
-				$('div.page').append("<div class='container'>")
-				$('div.container').append('<h1 class="recipe_title">' + newRecipe.name + '</h1>')
-				$('div.container').append('<h3 class= "cook_time">Prep Time: ' + newRecipe.prep_time_in_minutes + ' minutes ' + '--- Cook Time: ' + newRecipe.cook_time_in_minutes + ' minutes')
-				$('div.container').append('<h4 class="ingredients"> Ingredients: </h4>')
-				$('div.container').append('<ol class ="list">')
-				
-					$.each(json.ingredients, function(index, element) {						
-						$('.list').append('<li id="ingredient_name_' + element.id + '">' + element.name + '</li>')
-					})
-					
-					$.each(json.recipe_ingredients, function(index, element) {						
-						$('#ingredient_name_' + element.ingredient_id).prepend(element.quantity + " ")
-					})
-
-				$('div.container').append('<h4 class="instructions"> Instructions: </h4>')
-				$('div.container').append('<p class="recipe_instructions">' + newRecipe.instructions + '</p>')
-				$('div.container').append('<h3 class="author">Added by: ' + newRecipe.user.name + '</h3>')
-					// also render comments at the bottom of the page...so probaby a function in comments.js to show comments..
-				
+				newRecipe.displayRecipe();
+									
 			}
 		});
+		window.history.pushState('obj', 'PageTitle', thisUrl);
+   				return false;
 	});
 });
 
-$(function showRecipeFromUsers() {
-	$('body').on("click", 'a#user_recipe', function(e){
-		e.preventDefault();
-	
-		let thisUrl = this.href
-		
-	$.get(thisUrl).success(function(data){
-		let thisRecipe = $(data).find('div.container')
-			$('div.container').replaceWith(thisRecipe)
-			
-			window.history.pushState('obj', 'PageTitle', thisUrl);
-   				return false;
-		});
-	});
-});
 
 $(function editRecipe(){
 	$('body').on("click",'a#edit_recipe', function(e){
