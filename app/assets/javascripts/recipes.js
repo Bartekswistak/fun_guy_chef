@@ -10,36 +10,30 @@ function Recipe(recipe) {
   }
 
 
-  Recipe.prototype.displayRecipe = function(e){
+Recipe.prototype.displayRecipe = function(e){
 	
-		$('div.container').remove();
-		$('div.page').append("<div class='container'>")
-		$('div.container').append('<h1 class="recipe_title">' + this.name + '</h1>')
-		$('div.container').append('<h3 class= "cook_time">Prep Time: ' + this.prep_time_in_minutes + ' minutes ' + '--- Cook Time: ' + this.cook_time_in_minutes + ' minutes')
-		$('div.container').append('<h4 class="ingredients"> Ingredients: </h4>')
-		$('div.container').append('<ol class ="list">')
+	$('div.container').remove();
+	$('div.page').append("<div class='container'>")
+	$('div.container').append('<h1 class="recipe_title">' + this.name + '</h1>')
+	$('div.container').append('<h3 class= "cook_time">Prep Time: ' + this.prep_time_in_minutes + ' minutes ' + '--- Cook Time: ' + this.cook_time_in_minutes + ' minutes')
+	$('div.container').append('<h4 class="ingredients"> Ingredients: </h4>')
+	$('div.container').append('<ol class ="list">')
 				
-			$.each(this.ingredients, function(index, element) {						
-				$('.list').append('<li id="ingredient_name_' + element.id + '">' + element.name + '</li>')
-			})
+		$.each(this.ingredients, function(index, element) {						
+			$('.list').append('<li id="ingredient_name_' + element.id + '">' + element.name + '</li>')
+		})
 					
-			$.each(this.recipe_ingredients, function(index, element) {						
+		$.each(this.recipe_ingredients, function(index, element) {						
 				$('#ingredient_name_' + element.ingredient_id).prepend(element.quantity + " ")
-			})
+		})
 
-		$('div.container').append('<h4 class="instructions"> Instructions: </h4>')
-		$('div.container').append('<p class="recipe_instructions">' + this.instructions + '</p>')
-		$('div.container').append('<h3 class="author">Added by: ' + this.user.name + '</h3>')
-					
-				
-		// also render comments at the bottom of the page...so probaby a function in comments.js to show comments..				
-				
-		window.history.pushState('obj', 'PageTitle', thisUrl);
-		return false;
-		}
-	
+	$('div.container').append('<h4 class="instructions"> Instructions: </h4>')
+	$('div.container').append('<p class="recipe_instructions">' + this.instructions + '</p>')
+	$('div.container').append('<h3 class="author">Added by: ' + this.user.name + '</h3>')
+	$('div.container').append('<h2> <a href="#" class="show_comments"> Show Comments </a></h2>')
+}
 
-  $(function showRecipeFromUsers() {
+$(function showRecipeFromUsers() {
 	$('body').on("click", 'a#user_recipe', function(e){
 		e.preventDefault();
 		
@@ -53,11 +47,33 @@ function Recipe(recipe) {
 
 		let newRecipe = new Recipe(json)
 		newRecipe.displayRecipe();
-		}
-		});
+
+			}
+			})
+			window.history.pushState('obj', 'PageTitle', thisUrl);
+   				return false;
+		})
+	})
+
+$(function displayComments() {
+	$('body').on("click", 'a.show_comments', function(e){
+		e.preventDefault();
+	
+		let thisUrl = this.href
+
+		$.ajax({
+			action: 'GET',
+			url: thisUrl,
+			data: 'data',
+			dataType: 'html',
+			success: function(data) {
+				let allComments = $(data).find("div.all_comments")
+				$('div.container').append(allComments)
+				$('a.show_comments').remove()
+			}
+		})
 	})
 })
-	
 
 $(function showUsersRecipes() {
 	$('body').on("click",'a#users_recipes', function(e){
@@ -96,7 +112,10 @@ $(function showUsersRecipes() {
 	});
 });
 
+
+
 $(function showRecipe() {
+
 	$('body').on("click",'a#recipe_link', function(e){
 		e.preventDefault();
 	

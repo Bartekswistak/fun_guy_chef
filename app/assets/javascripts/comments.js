@@ -24,19 +24,24 @@ Comment.prototype.commentConfirm = function(e) {
     let url = window.location.href
 
   $.post(url, params).success(function(response) {
+    let thisComment = new Comment(response)
+    thisComment.displayComment();
       
-    $('div.comments_container').append('<div class="new_comment_' + `${response.id}` + '"> </div>')
-
-      $('div.new_comment_'+ `${response.id}`).append('<h3 class="cheading">' + response.user.name + ' gives ' + response.rating + ' out of 5 stars! </h3>')
-      $('div.new_comment_'+ `${response.id}`).append('<p class="cdescription">' + response.description + '</p>')
-      $('div.new_comment_'+ `${response.id}`).append('<a class="ecomment" href="/recipes/' + `${response.recipe_id}` + '/comments/' + `${response.id}` + '/edit">Edit</a>' + " ")
-      $('div.new_comment_'+ `${response.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${response.id}` + '">Delete</a>')
-
-      $('form#new_comment')[0].reset();
-      $('h2.no_comment_message').remove();
     });
   };
 };
+
+Comment.prototype.displayComment = function(e) {
+  $('div.comments_container').append('<div class="new_comment_' + this.id + '"> </div>')
+
+      $('div.new_comment_'+ `${this.id}`).append('<h3 class="cheading">' + this.user.name + ' gives ' + this.rating + ' out of 5 stars! </h3>')
+      $('div.new_comment_'+ `${this.id}`).append('<p class="cdescription">' + this.description + '</p>')
+      $('div.new_comment_'+ `${this.id}`).append('<a class="ecomment" href="/recipes/' + `${this.recipe_id}` + '/comments/' + `${this.id}` + '/edit">Edit</a>' + " ")
+      $('div.new_comment_'+ `${this.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${this.id}` + '">Delete</a>')
+
+      $('form#new_comment')[0].reset();
+      $('h2.no_comment_message').remove();
+}
 
 function Comment(comment) {
   this.description = comment.description;
