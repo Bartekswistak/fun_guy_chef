@@ -1,11 +1,11 @@
 function Recipe(recipe) {
 	this.id = recipe.id
 	this.name = recipe.name;
-	this.cook_time_in_minutes = recipe.cook_time_in_minutes;
-	this.prep_time_in_minutes = recipe.prep_time_in_minutes;
+	this.cookTimeInMinutes = recipe.cook_time_in_minutes;
+	this.prepTimeInMinutes = recipe.prep_time_in_minutes;
 	this.instructions = recipe.instructions;
 	this.ingredients = recipe.ingredients;
-	this.recipe_ingredients = recipe.recipe_ingredients;
+	this.recipeIngredients = recipe.recipe_ingredients;
 	this.user = recipe.user;
   }
 
@@ -15,7 +15,7 @@ Recipe.prototype.displayRecipe = function(e){
 	$('div.container').remove();
 	$('div.page').append("<div class='container'>")
 	$('div.container').append('<h1 class="recipe_title">' + this.name + '</h1>')
-	$('div.container').append('<h3 class= "cook_time">Prep Time: ' + this.prep_time_in_minutes + ' minutes ' + '--- Cook Time: ' + this.cook_time_in_minutes + ' minutes')
+	$('div.container').append('<h3 class= "cook_time">Prep Time: ' + this.prepTimeInMinutes + ' minutes ' + '--- Cook Time: ' + this.cookTimeInMinutes + ' minutes')
 	$('div.container').append('<h4 class="ingredients"> Ingredients: </h4>')
 	$('div.container').append('<ol class ="list">')
 				
@@ -23,7 +23,7 @@ Recipe.prototype.displayRecipe = function(e){
 			$('.list').append('<li id="ingredient_name_' + element.id + '">' + element.name + '</li>')
 		})
 					
-		$.each(this.recipe_ingredients, function(index, element) {						
+		$.each(this.recipeIngredients, function(index, element) {						
 				$('#ingredient_name_' + element.ingredient_id).prepend(element.quantity + " ")
 		})
 
@@ -99,8 +99,8 @@ $(function showUsersRecipes() {
 				let remove = '<button type="button" name="button" class="button"> <a rel="nofollow" data-method="delete" href="/recipes/' + element.id + '">Delete</a> </button>'
 
 				$('h3.users_recipes').append('<a id="user_recipe" href="/recipes/' + element.id + '">'+ element.name + '</a><br>') 
-				$('h3.users_recipes').append('<p class="recipe_info"> Prep Time: ' + element.prep_time_in_minutes + " minutes" + 
-												'<br> Cook Time: ' + element.cook_time_in_minutes + " minutes </p>");
+				$('h3.users_recipes').append('<p class="recipe_info"> Prep Time: ' + element.prepTimeInMinutes + " minutes" + 
+												'<br> Cook Time: ' + element.cookTimeInMinutes + " minutes </p>");
 				$('h3.users_recipes').append( '<br>' + edit + " " + remove + '<br><br>')
 				
 				
@@ -160,16 +160,48 @@ $(function showAllRecipes() {
 		e.preventDefault();
 	
 		let thisUrl = this.href
-		
-	$.get(thisUrl).success(function(data){
-		let thisRecipe = $(data).find('div.container')
-			$('div.container').replaceWith(thisRecipe)
-			
-			window.history.pushState('obj', 'PageTitle', thisUrl);
+
+		$.ajax({
+			action: 'GET',
+			url: thisUrl,
+			dataType: 'json',
+			success: function(json) {
+
+				$('div.container').remove();
+				$('div.page').append("<div class='container'>")
+
+				json.sort(function(a, b) {
+					var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+					var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+					if (nameA < nameB) {
+					  return -1;
+					}
+					if (nameA > nameB) {
+					  return 1;
+					}
+				  
+					// names must be equal
+					return 0;
+				  });
+
+				$.each(json, function(index, element) {
+					
+					
+					$('div.container').append('<h4><a id="recipe_link" href="/recipes/' + element.id + '">'+ element.name + '</a><br>') 
+					$('div.container').append('<p class="recipe_info"> Prep Time: ' + element.prepTimeInMinutes + " minutes" + 
+													'<br> Cook Time: ' + element.cookTimeInMinutes + " minutes </p></h4>");
+
+
+				})
+				window.history.pushState('obj', 'PageTitle', thisUrl);
    				return false;
+			}	
 		});
 	});
 });
+
+
+
 
 $(function showFastestRecipes() {
 	$('body').on("click", 'a#fastest_recipes', function(e){
@@ -204,13 +236,13 @@ $(function createRecipeForm() {
 });
 
 $(function addMoreIngredients() {
-	var max_fields = 10;
+	var maxFields = 10;
 	var wrapper = $(".ingredient_form"); 
 	var x = 0; 
 	
 	$('body').on('click', 'button.add_field_button', function(e){ 
 		e.preventDefault();
-		if(x < max_fields){ 
+		if(x < maxFields){ 
 			x++; 
       		$('div.ingredient_form').append('<div class="ingredient_entry_form">Add New Ingredient:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][ingredient][name]"/>Amount:<input type="text" name="recipe[recipe_ingredients_attributes][' + x + '][quantity]"/><a href="#" class="remove_field">Remove</a></div>');
 		};

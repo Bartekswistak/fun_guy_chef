@@ -39,6 +39,12 @@ Comment.prototype.displayComment = function(e) {
       $('div.new_comment_'+ `${this.id}`).append('<a class="ecomment" href="/recipes/' + `${this.recipe_id}` + '/comments/' + `${this.id}` + '/edit">Edit</a>' + " ")
       $('div.new_comment_'+ `${this.id}`).append('<a class="dcomment" rel="nofollow" data-method="delete" href="/comments/' + `${this.id}` + '">Delete</a>')
 
+      // `
+      // <div>
+      //   ${}
+      // </div>
+      // `
+
       $('form#new_comment')[0].reset();
       $('h2.no_comment_message').remove();
 }
@@ -53,8 +59,8 @@ function Comment(comment) {
     $('body').on("click",'a.dcomment', function(e){
       e.preventDefault();
 
-      var r = confirm("Delete this comment?");
-        if (r == true) {
+      var alertBoolean = confirm("Delete this comment?");
+        if (alertBoolean == true) {
           $(this).parent().hide("slow");
           }
           else {
