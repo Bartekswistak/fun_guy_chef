@@ -1,5 +1,7 @@
 # Fun Guy Chef
 
+# This branch is deprecated. Check out the Jquery branch to see functioning application.
+
 Fun Guy Chef is a Rails Application where users can create, manage and browse recipes with a main staple ingredient of Mushrooms!
 
 ## Features
